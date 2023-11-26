@@ -1,1 +1,5 @@
 # YourMoneyTrackerMail
+
+### Collaborators
+- [You!]
+- [Gael]
