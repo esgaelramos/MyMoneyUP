@@ -1,1 +1,4 @@
 /nv/
+/*.pyc/
+.env
+*.sqlite3
