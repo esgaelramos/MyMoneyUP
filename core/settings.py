@@ -1,16 +1,23 @@
+import os
+import sys
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from .config_loader import load_config
+from .utils import str_to_bool
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*%ss!j*tgr8=yo26@g!l2x5j!um7tohkojn+936ucqt-&-yec2'
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Carga la configuración desde el archivo YAML.
+env_settings = load_config()
+
+SECRET_KEY = env_settings['SECRET_KEY']
+
+DEBUG = str_to_bool(env_settings['DEBUG'])
 
 ALLOWED_HOSTS = []
 
