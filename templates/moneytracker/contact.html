@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
+    <title>Enviar Email</title>
 </head>
 <body>
-    <h3>Desarrolladores:</h3>
-</body>
+    
+<html>
+        <h1>Enviar un Email</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="subject">Asunto:</label><br>
+            <input type="text" id="subject" name="subject" required><br>
+            <label for="message">Mensaje:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <label for="to_email">Enviar a:</label><br>
+            <input type="email" id="to_email" name="to_email" required><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
 </html>
+
+
+
