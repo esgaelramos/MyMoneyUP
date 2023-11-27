@@ -50,3 +50,4 @@ python manage.py runserver
 ### Collaborators
 - [Lorenzo]
 - [Gael]
+- [Jorge]
