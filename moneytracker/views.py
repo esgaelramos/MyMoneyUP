@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from core.config_loader import load_config
+
 # Create your views here.
+env_settings = load_config()
 class Tracker(View):
     def get(self, request, *args, **kwargs):
         context={
@@ -28,7 +31,8 @@ class Contact(View):
             message = request.POST.get('message')
             to_email = request.POST.get('to_email')
             
-            send_mail(subject, message, 'tuemail@gmail.com', [to_email])
+            send_mail(subject, message, env_settings["EMAIL_USER"], [to_email])
+            print(env_settings["EMAIL_USER"])
             return HttpResponse("Correo enviado con éxito!")
 
         return HttpResponse("Error: Este formulario solo acepta solicitudes POST.")
