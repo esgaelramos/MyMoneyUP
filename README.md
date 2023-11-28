@@ -14,7 +14,7 @@ source env/bin/activate
 ```
 Or in Windows (PowerShell)
 ```bash
-\env\Scripts\Activate.ps1
+env\Scripts\Activate.ps1
 ```
 Install the requirements
 ```bash
