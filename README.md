@@ -51,3 +51,15 @@ python manage.py runserver
 - [Lorenzo]
 - [Gael]
 - [Jorge]
+
+### List To Do
+
++ Mac Error, dependencia de envío de correos=
+
+    "self._sslobj.do_handshake()
+    ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)"
+
++ Agregar Vistas:
+    * Home
+    * About
+    * Contact
