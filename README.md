@@ -36,6 +36,29 @@ Run the server
 ```bash
 python manage.py runserver
 ```
+Pasos crear y cambiar a nueva rama en GIT
+
+Revisar cambios
+```bash
+git status
+```
+Traer cambios
+```bash
+git pull
+```
+Ver nombre de rama
+```bash
+git branch
+```
+Crear rama y cambiar de rama
+```bash
+git checkout -m nombre_rama
+```
+Ver rama
+```bash
+git branch
+```
+
 
 ## Stack
 + Python 3.10
