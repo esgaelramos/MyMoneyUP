@@ -19,7 +19,9 @@ SECRET_KEY = env_settings['SECRET_KEY']
 
 DEBUG = str_to_bool(env_settings['DEBUG'])
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*', # Para que se pueda acceder desde cualquier host.
+]
 
 
 # Application definition
