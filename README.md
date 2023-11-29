@@ -75,6 +75,7 @@ git branch
 - [Gael]
 - [Jorge]
 - [Camila]
+- [Alejimho (la secuela)]
 
 ### List To Do
 
