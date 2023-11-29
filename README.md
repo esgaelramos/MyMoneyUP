@@ -74,6 +74,7 @@ git branch
 - [Lorenzo]
 - [Gael]
 - [Jorge]
+- [Camila]
 
 ### List To Do
 
