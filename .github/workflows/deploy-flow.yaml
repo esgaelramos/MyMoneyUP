@@ -30,7 +30,7 @@ jobs:
           env/bin/pip install -r requirements.txt
 
           # collectstatic sin interacción
-          # env/bin/python src/manage.py collectstatic --noinput
+          env/bin/python manage.py collectstatic --noinput
 
           # migrate sin interacción
           # env/bin/python src/manage.py migrate --noinput
