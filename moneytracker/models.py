@@ -25,8 +25,6 @@ class Performance(models.Model):
     date = models.DateField()
     days_to_send_email = models.IntegerField()
     total_portfolio_value = models.DecimalField(max_digits=18, decimal_places=8)
-    performance = models.DecimalField(max_digits=5, decimal_places=2)
-
     class Meta:
         unique_together = ('user', 'date')
 
