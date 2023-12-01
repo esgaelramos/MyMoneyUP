@@ -1,91 +1,176 @@
 # YourMoneyTrackerMail
+YourMoneyTrackerMail is a django project for track your assets, and send a
+email with a report and a newsletter with the progress and performance of 
+that assets. Check in [mymoneyup.tech](https://mymoneyup.tech) :|
 
+TODO: Put a GIFT of the website view here!
 
 ## Installation
-Note: This project was developed with Python 3.10 (pip 22) in Linux Mint 20.
+For the correct operation of the project, it is necessary to have installed the following programs:
++ Python 3.10 (or higher)
++ Pip 22 (package installer for Python)
++ Python VENV (virtual environment)
++ PostgreSQL (12 or higher, 16 recommended)
 
 Create a virtual environment
 ```bash
 python3 -m venv env
 ```
+
 Activate the virtual environment
 ```bash
 source env/bin/activate
 ```
-Or in Windows (PowerShell)
+Or in Others OS :| 
 ```bash
-env\Scripts\Activate.ps1
+env\Scripts\Activate.ps1 # Windows PowerShell
+env\Scripts\Activate.bat # Windows CMD
+. env/bin/activate # Mac & Linux?
 ```
-Install the requirements
+
+Install the requirements (don't forget activate the venv!)
 ```bash
 pip install -r requirements.txt
 ```
+
 Create migrations
 ```bash
 python manage.py makemigrations
 ```
+
+Create the file .env
+
++ Now! Stop! We need create a file .env in the root of project, and add the 
+same variables of .env.example file, click here for check what mean each 
+variable: [File of Variables](#file-of-variables).
+
+#### Create the database in PostgreSQL
+```bash
+sudo -u postgres psql # Enter to postgresql
+-
+CREATE DATABASE mymoneyup;
+-
+\l # List databases (check if the database was created)
+\c mymoneyup # Connect to database (check if can connect)
+\dt # List tables (check if the database is empty)
+\q # Exit of postgresql
+```
+
 Run the migrations
 ```bash
 python manage.py migrate
 ```
+
 Create a superuser
 ```bash
 python manage.py createsuperuser
 ```
+
 Run the server
 ```bash
 python manage.py runserver
 ```
-Pasos crear y cambiar a nueva rama en GIT
 
-Revisar cambios
+---
+---
+---
+
+## How Contribute?
+For contribute in this project, you need to follow the next steps:
+
+1. Fork this repository
+2. Clone your forked repository
+3. Create a new branch
+4. Make your changes
+5. Push your changes to your forked repository
+6. Make a pull request
+
+Clone repository
 ```bash
-git status
+git clone THE_URL_OF_YOUR_FORKED_REPOSITORY
 ```
-Traer cambios
+Update repository
 ```bash
-git pull
+git pull origin main # or use fetch and merge :|
 ```
-Ver nombre de rama
+Create a new branch
 ```bash
-git branch
+git checkout -b name_of_your_new_branch
 ```
-Crear rama y cambiar de rama
+Check the status of your repository
 ```bash
-git checkout -m nombre_rama
+git status # check the files modified!
+git branch # check the branch!
 ```
-Ver rama
+Make your changes
++ For your first contribution, you can add your name in the list of collaborators
+in the file README.md, and then, make a pull request.
+
+Add your changes
 ```bash
-git branch
+git add . # add all files modified
+git add name_of_file # add a specific file
+```
+Commit your changes
+```bash
+git commit -m "a message of your commit"
 ```
 
+Push your changes to your forked repository
+```bash
+git push # fail, because you need to set upstream your branch
+git push --set-upstream origin name_of_your_new_branch
+```
 
-## Stack
-+ Python 3.10
-+ Django 4.2
-+ SQLITE - Dev
-+ PostgreSQL - Prod
-+ HTML - CSS
-+ JavaScript Vanila
-+ GitHub Action (CI/CD)
-+ VPS Ubuntu in DO
+Make a pull request
++ Go to your forked repository in GitHub, and click in the button "Compare & pull request"
++ Add a title and a description of your pull request
++ Click in the button "Create pull request"
 
-### Collaborators
-- [Lorenzo]
-- [Gael]
-- [Jorge]
-- [Camila]
-- [Alejimho (la secuela)]
-- [Andriw]
+And that's it, you made your first contribution :D
+For more changes, you can repeat the steps, dont forget update your repository!
 
-### List To Do
+---
+---
+---
 
-+ Mac Error, dependencia de envío de correos=
+## File of Variables
+In this file we have the variables of environment, obviously, this file is
+ignored by git, because we don't want to share our secrets with the world.
 
-    "self._sslobj.do_handshake()
-    ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)"
+### The fundamental variables are:
++ SECRET_KEY = 'a random key for Django security'
++ DEBUG = True/False (use True only in development)
++ PATH_CONFIG_YAML = 'path of config.yaml file in the root of project'
++ DOMAIN_DEV = 'domain of development (in local is "127.0.0.1")'
 
-+ Agregar Vistas:
-    * Home
-    * About
-    * Contact
+### DataBase Variables:
+Remember, first [create the database in PostgreSQL](#create-the-database-in-postgresql), and then, add these variables!
++ DBNAME_DEV = 'name of database'
++ DBUSER_DEV = 'user of database (default is postgres)'
++ DBPASSWORD_DEV = 'password of database'
++ DBHOST_DEV = 'host of database (default is localhost)'
++ DBPORT_DEV = 'port of database (default is '5432')'
+
+### More variables (not fundamental):
++ EMAIL_USER_DEV = 'from (gmail) for send emails'
++ EMAIL_PASSWORD_DEV = 'obtained from gmail for not secure apps!'
+
+---
+---
+---
+
+## About More of Project
+For make a project with a good architecture, we made this diagram, and it's 
+a responsibility of all developers, follow and maintain the better practices :|
+![Architecture of Project](.github/fordevs/imgs/our-website-architecture.png)
+
+## Collaborators
+- [Lorenzo](https://github.com/LorenzoFerreyra)
+- [Gael](https://github.com/esgaelramos)
+- [Jorge](https://github.com/JorgeGarcia-Dev)
+- [Camila](https://github.com/CamilaPua)
+- [Alejimho (la secuela)](https://github.com/alejimhouwu)
+- [Andriw](https://github.com/AndriwRC)
+
+# END!
