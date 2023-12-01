@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 # Notar que traemos el objeto User que crea Django por defecto
 ## y luego lo citamos. por eso no creamos la clase usuario
-class CustomUser(User):
+class CustomUser(models.Model):
     suscribed = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class Asset(models.Model):
     name = models.CharField(max_length=255)

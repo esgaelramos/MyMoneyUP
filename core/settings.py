@@ -20,7 +20,7 @@ SECRET_KEY = env_settings['SECRET_KEY']
 DEBUG = str_to_bool(env_settings['DEBUG'])
 
 ALLOWED_HOSTS = [
-    '*', # Para que se pueda acceder desde cualquier host.
+    env_settings['DOMAIN'],
 ]
 
 
@@ -72,8 +72,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env_settings['DBNAME'],
+        'USER': env_settings['DBUSER'],
+        'PASSWORD': env_settings['DBPASSWORD'],
+        'HOST': env_settings['DBHOST'],
+        'PORT': env_settings['DBPORT'],
     }
 }
 
