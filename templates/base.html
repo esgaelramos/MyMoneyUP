@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags for mobile apps (important for show content in mobile devices) -->
+    {% comment %} <meta name="mobile-web-app-capable" content="yes"> {% endcomment %}
+
+    <!-- Meta tags for SEO and social sharing -->
+    <meta name="description" content="{% block meta_description %}My Money Up is a financial currencies service for inform prices to users{% endblock %}">
+
+    <meta name="keywords" content="{% block meta_keywords %}bitcoin, ethereum, usd, prices{% endblock %}">
+
+    <meta name="author" content="Money Up Team"/>
+
+    <meta name="copyright" content="My Money Up 2024" />
+
+    <!-- Meta tags extra -->
+    {% block meta_extra %}{% endblock meta_extra %}
+
+    <title>
+        {% block title %}{% endblock title %} | My Money Up
+    </title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="shortcut icon" href="https://giraprepa.s3.amazonaws.com/logo.ico" type="image/x-icon">
+
+    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include "components/navbar.html" %}
+
+    <main>
+        {% block main %}{% endblock main %}
+    </main>
+
+    {% include "components/footer.html" %}
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Additional Scripts -->
+    {% block scripts %}{% endblock scripts %}
+
+</body>
+</html>
