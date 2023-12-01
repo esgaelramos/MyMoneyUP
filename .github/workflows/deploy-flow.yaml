@@ -35,4 +35,4 @@ jobs:
           # migrate sin interacción
           # env/bin/python src/manage.py migrate --noinput
 
-          # sudo systemctl restart yourmoneytrackermail
+          sudo systemctl restart yourmoneytrackermail
