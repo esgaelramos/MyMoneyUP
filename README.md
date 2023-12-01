@@ -76,6 +76,7 @@ git branch
 - [Jorge]
 - [Camila]
 - [Alejimho (la secuela)]
+- [Andriw]
 
 ### List To Do
 
