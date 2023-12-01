@@ -6,4 +6,5 @@ __pycache__/
 *.sqlite3
 .DS_Store
 .service
+.nginx
 staticfiles
