@@ -30,7 +30,7 @@ env\Scripts\Activate.bat # Windows CMD
 
 Install the requirements (don't forget activate the venv!)
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 Create migrations
@@ -164,6 +164,12 @@ Remember, first [create the database in PostgreSQL](#create-the-database-in-post
 For make a project with a good architecture, we made this diagram, and it's 
 a responsibility of all developers, follow and maintain the better practices :|
 ![Architecture of Project](.github/fordevs/imgs/our-website-architecture.png)
+
+### For Developers
+Tree of the project
+```bash
+tree -I "env|.git|.pytest_cache|__pycache__" -la
+```
 
 ## Collaborators
 - [Lorenzo](https://github.com/LorenzoFerreyra)
