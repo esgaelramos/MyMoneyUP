@@ -1,0 +1,10 @@
+Django==4.2
+pyyaml
+python-decouple
+psycopg2-binary==2.9.7
+gunicorn==21.2.
+certifi
+# testing
+pytest
+pytest-cov
+pytest-django
