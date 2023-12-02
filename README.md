@@ -102,6 +102,7 @@ Check the status of your repository
 git status # check the files modified!
 git branch # check the branch!
 ```
+
 Make your changes
 + For your first contribution, you can add your name in the list of collaborators
 in the file README.md, and then, make a pull request.
@@ -115,7 +116,6 @@ Commit your changes
 ```bash
 git commit -m "a message of your commit"
 ```
-
 Push your changes to your forked repository
 ```bash
 git push # fail, because you need to set upstream your branch
@@ -169,6 +169,10 @@ a responsibility of all developers, follow and maintain the better practices :|
 Tree of the project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__" -la
+```
+Don't forget to make your tests before and after make your changes
+```bash
+pytest
 ```
 
 ## Collaborators
