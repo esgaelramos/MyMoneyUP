@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import Tracker, About, Contact
+from .views import TrackerView, AboutView, ContactView
 app_name="moneytracker"
 
 urlpatterns = [
-    path("",Tracker.as_view(),name="home"),
-    path("about", About.as_view(), name="about"),
-    path("contact", Contact.as_view(),name="contact")
+    path("",TrackerView.as_view(),name="home"),
+    path("about/", AboutView.as_view(), name="about"),
+    path("contact/", ContactView.as_view(),name="contact")
 ]
