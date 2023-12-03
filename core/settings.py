@@ -81,6 +81,14 @@ DATABASES = {
     }
 }
 
+# Database for testing!
+if 'test' in sys.argv or 'pytest' in sys.argv[0]:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

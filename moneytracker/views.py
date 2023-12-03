@@ -6,21 +6,21 @@ from core.config_loader import load_config
 
 # Create your views here.
 env_settings = load_config()
-class Tracker(View):
+class TrackerView(View):
     def get(self, request, *args, **kwargs):
         context={
         }
         return render(request, "moneytracker/tracker.html", context)
 
 
-class About(View):
+class AboutView(View):
     def get(self, request, *args, **kwargs):
         context={
         }
         return render(request, "moneytracker/about.html", context)
     
 
-class Contact(View):
+class ContactView(View):
     def get(self, request, *args, **kwargs):
         context={
         }
@@ -36,5 +36,3 @@ class Contact(View):
             return HttpResponse("Correo enviado con éxito!")
 
         return HttpResponse("Error: Este formulario solo acepta solicitudes POST.")
-
-
