@@ -20,3 +20,12 @@ class TermsViewTest(TestCase):
         response = self.client.get(reverse('terms'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'terms/terms.html')
+        
+class Custom404ViewTest(TestCase):
+    """
+    Tests that the custom 404 view is working correctly.
+    """
+    def test_custom_404_view_uses_correct_template(self):
+        response = self.client.get('not-exists-url')
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, 'errors/404.html')
