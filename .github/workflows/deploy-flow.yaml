@@ -56,6 +56,6 @@ jobs:
           env/bin/python manage.py collectstatic --noinput
 
           # migrate sin interacción
-          # env/bin/python src/manage.py migrate --noinput
+          env/bin/python manage.py migrate --noinput
 
           sudo systemctl restart yourmoneytrackermail

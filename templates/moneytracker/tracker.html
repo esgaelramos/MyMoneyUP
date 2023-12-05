@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 
 {% block title %}
     Home
@@ -9,5 +10,10 @@
 {% endblock %}
 
 {% block main %}
-    <h1>My Money Up</h1>
+    <h1>My Google OAuth Project </h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, You are logged in as {{ user.username }}</p>
+    {% else %}
+        <a href="{% provider_login_url 'google' %}">Login With Google</a>
+    {% endif %}
 {% endblock %}

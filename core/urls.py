@@ -22,6 +22,7 @@ from .views import TermsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("allauth.urls")),
     path("",include("moneytracker.urls")),
     path("terms/", TermsView.as_view(), name="terms"),
 ]
