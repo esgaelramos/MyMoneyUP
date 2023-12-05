@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# from .views import HomeView
+from .views import TermsView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",include("moneytracker.urls"))
+    path("",include("moneytracker.urls")),
+    path("terms/", TermsView.as_view(), name="terms"),
 ]
