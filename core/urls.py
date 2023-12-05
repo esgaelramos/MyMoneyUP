@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import TermsView
+from .views import Custom404View
 
 
 urlpatterns = [
@@ -25,3 +26,5 @@ urlpatterns = [
     path("",include("moneytracker.urls")),
     path("terms/", TermsView.as_view(), name="terms"),
 ]
+
+handler404 = Custom404View.as_view()

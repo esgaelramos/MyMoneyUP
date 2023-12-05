@@ -9,15 +9,18 @@ Note:
 - For URL resolving tests, use the actual URL string (e.g., '/login/')
 instead of the named URL pattern.
 """
-from django.urls import resolve
+from django.urls import resolve, reverse
 from django.test import SimpleTestCase
 from core.views import TermsView
+
+from django.test import TestCase
 
 
 class TestUrlsResolves(SimpleTestCase):
     """
     Tests that the urls are resolving correctly.
     """
+
     def test_terms_url_resolves(self):
-        view = resolve('/terms/')
+        view = resolve("/terms/")
         self.assertEqual(view.func.view_class, TermsView)
