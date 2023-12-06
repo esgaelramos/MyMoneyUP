@@ -8,3 +8,4 @@ certifi
 pytest
 pytest-cov
 pytest-django
+django-livereload-server
