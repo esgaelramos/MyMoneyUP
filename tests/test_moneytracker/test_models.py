@@ -16,7 +16,7 @@ class CustomUserModelTest(TestCase):
 
     @patch('moneytracker.models.CustomUser.save')
     def test_customuser_suscribed_creation(self, mock_save):
-        customuser_example = CustomUser(suscribed=True, user=self.django_user)
+        customuser_example = CustomUser(user=self.django_user)
         self.assertEqual(customuser_example.user.username, "Django User")
         self.assertEqual(customuser_example.suscribed, True)
         self.assertEqual(customuser_example.user, self.django_user)
