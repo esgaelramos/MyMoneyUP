@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 class CustomUser(models.Model):
@@ -15,7 +16,7 @@ class Asset(models.Model):
     symbol = models.CharField(max_length=10)
     type = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name} ({self.symbol}) - {self.type}"
 
 
@@ -38,7 +39,7 @@ class PortfolioAsset(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f'{self.asset.name} portfolio of {self.asset.user}'
+        return f'{self.asset.name} portfolio of {self.portfolio.user}'
 
 
 class Performance(models.Model):
