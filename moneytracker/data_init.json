@@ -1,1 +1,86 @@
-// Pendiente:
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "exampleuser1",
+            "password": "examplepassword1",
+            "email": "user1@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "exampleuser2",
+            "password": "examplepassword2",
+            "email": "user2@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "exampleuser3",
+            "password": "examplepassword3",
+            "email": "user3@example.com"
+        }
+    },
+    {
+        "model": "moneytracker.customuser",
+        "pk": 1,
+        "fields": {
+            "suscribed": true,
+            "user": 1
+        }
+    },
+    {
+        "model": "moneytracker.customuser",
+        "pk": 2,
+        "fields": {
+            "suscribed": false,
+            "user": 2
+        }
+    },
+    {
+        "model": "moneytracker.customuser",
+        "pk": 3,
+        "fields": {
+            "user": 3
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 1,
+        "fields": {
+            "name": "Example Asset",
+            "symbol": "EXA",
+            "type": "Stock"
+        }
+    },
+    {
+        "model": "moneytracker.portfolio",
+        "pk": 1,
+        "fields": {
+            "user": 1
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 1,
+        "fields": {
+            "portfolio": 1,
+            "asset": 1,
+            "quantity": "100.00000000",
+            "acquisition_date": "2023-01-01"
+        }
+    },
+    {
+        "model": "moneytracker.performance",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "days_to_send_email": 7
+        }
+    }
+]
