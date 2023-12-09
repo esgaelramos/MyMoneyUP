@@ -82,8 +82,9 @@ For contribute in this project, you need to follow the next steps:
 2. Clone your forked repository
 3. Create a new branch
 4. Make your changes
-5. Push your changes to your forked repository
-6. Make a pull request
+5. Run the tests
+6. Push your changes to your forked repository
+7. Make a pull request
 
 Clone repository
 ```bash
@@ -107,6 +108,11 @@ Make your changes
 + For your first contribution, you can add your name in the list of collaborators
 in the file README.md, and then, make a pull request.
 
+Don't forget to make your tests before and after make your changes
+```bash
+pytest
+```
+
 Add your changes
 ```bash
 git add . # add all files modified
@@ -128,7 +134,7 @@ Make a pull request
 + Click in the button "Create pull request"
 
 And that's it, you made your first contribution :D
-For more changes, you can repeat the steps, dont forget update your repository!
+For more changes, you can repeat the steps, don't forget update your repository!
 
 ---
 ---
@@ -170,6 +176,27 @@ Tree of the project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__" -la
 ```
+
+To populate the project we offer this scripts:
++ For Linux
+```bash
+sh .github/fordevs/backups/populate_project.sh 
+```
+o
+```bash
+bash .github/fordevs/backups/populate_project.sh 
+```
+
+If you want to delete the data in your database you can run this scripts
++ For Linux
+```bash
+sh .github/fordevs/backups/delete_all_data.sh 
+```
+o
+```bash
+bash .github/fordevs/backups/delete_all_data.sh 
+```
+
 Don't forget to make your tests before and after make your changes
 ```bash
 pytest
