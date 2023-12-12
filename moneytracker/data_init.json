@@ -53,8 +53,8 @@
         "model": "moneytracker.asset",
         "pk": 1,
         "fields": {
-            "name": "Example Asset 1",
-            "symbol": "EXA",
+            "name": "Bitcoin_example",
+            "symbol": "BTC",
             "type": "Stock"
         }
     },
@@ -62,8 +62,8 @@
         "model": "moneytracker.asset",
         "pk": 2,
         "fields": {
-            "name": "Example Asset 2",
-            "symbol": "BTC",
+            "name": "Ethereum_example",
+            "symbol": "ETH",
             "type": "Stock"
         }
     },
@@ -71,8 +71,8 @@
         "model": "moneytracker.asset",
         "pk": 3,
         "fields": {
-            "name": "Example Asset 3",
-            "symbol": "EAS",
+            "name": "The Sandbox",
+            "symbol": "SAND",
             "type": "Stock"
         }
     },
