@@ -72,7 +72,7 @@ class ContactView(View):
             to_email = request.POST.get('to_email')
             
             send_mail(subject, message, settings.EMAIL_HOST_USER, [to_email])
-            print(settings.EMAIL_HOST_USER)
+            # TODO: EDIT THIS MANAGE OF CONTACT! (DONT USE HttpResponse, BETTER USE REDIRECT, NOT?)
             return HttpResponse("Correo enviado con éxito!")
 
         return HttpResponse("Error: Este formulario solo acepta solicitudes POST.")
