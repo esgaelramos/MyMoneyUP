@@ -4,6 +4,8 @@ python-decouple
 psycopg2-binary==2.9.7
 gunicorn==21.2.
 certifi
+Historic-Crypto
+pandas
 # testing
 pytest
 pytest-cov

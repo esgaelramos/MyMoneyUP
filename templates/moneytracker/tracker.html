@@ -14,16 +14,19 @@
     </section>
     <section class="main-section">
         <h3 class="main-section__title">Track your favorites currencies.</h3>
-        <form action="{% url 'moneytracker:home' %}" method="post" class="main-form">
+        <form action="/" method="post" class="main-form">
             {% csrf_token %}
             <input type="email" name="email" placeholder="example@mail.com" class="main-form__input" required>
-            <label for="assets">Select assets:</label>
-            <select name="assets" id="assets" multiple required>
-                {% for asset in assets %}
-                    <option value="{{ asset.id }}">{{ asset.name }}</option>
+            <label for="available_assets">Select assets:</label>
+            <select name="available_assets" id="available_assets" multiple required>
+                {% for asset in available_assets %}
+                    <option value="{{ asset }}">{{ asset }}</option>
                 {% endfor %}
             </select>
             <button type="submit" class="main-form__btn">SUBSCRIBE</button>
         </form>
+        
+        
+        
     </section>
 {% endblock %}

@@ -7,19 +7,30 @@ from django.db import transaction
 from .models import Asset, Portfolio, PortfolioAsset, CustomUser
 from django.conf import settings
 
+import pandas as pd
+from Historic_Crypto import Cryptocurrencies
+from Historic_Crypto import LiveCryptoData
+
 # Create your views here.
 class TrackerView(View):
+    def get_available_assets(self):
+        # Accedemos a la COINBASE API para obtener la lista de activos disponibles
+        coin_list = Cryptocurrencies().find_crypto_pairs()
+        available_assets = coin_list['id'].tolist()
+        return available_assets
+
     def get(self, request, *args, **kwargs):
-        assets = Asset.objects.all()
+        ## assets = Asset.objects.all() Ahora la lista de activos nos la da la API, no la bd
+        available_assets = self.get_available_assets()
         context={
-            "assets": assets,
+            "available_assets": available_assets,
         }
         return render(request, "moneytracker/tracker.html", context)
 
     def post(self, request, *args, **kwargs):
         # Get the email and the selected assets from the form
         email = request.POST.get('email')
-        selected_asset_ids = request.POST.getlist('assets')
+        selected_assets_tickers = request.POST.getlist('assets')
 
         # Begin an atomic transaction to ensure data integrity
         with transaction.atomic():
@@ -36,21 +47,42 @@ class TrackerView(View):
             portfolio, created_portfolio = Portfolio.objects.get_or_create(user=custom_user)
 
             # Add the selected assets to the portfolio
-            for asset_id in selected_asset_ids:
-                asset = Asset.objects.get(id=asset_id)
-                PortfolioAsset.objects.create(portfolio=portfolio, asset=asset, quantity=1)
+            asset_data_dict = {}
+            for ticker in selected_assets_tickers:
+                data = LiveCryptoData(ticker).return_data()
+                data['ticker'] = ticker
+                data['price'] = data['price'].astype(float).round(2)
+                data.sort_values(by=['price'], inplace=True)
+                asset_data_dict[ticker] = data
+                
+
+                # Debemos añadir el activo al modelo portfolio
+                PortfolioAsset.objects.create(portfolio=portfolio, asset=ticker, quantity=1)
+            
             
             # Send a confirmation email if the portfolio was created
             if created_portfolio:
+
+                email_body = f'Your portfolio has been created successfully. Current Prices:\n\n'
+                df = pd.DataFrame.from_dict(asset_data_dict, orient='index')
+                html_table = df.to_html()
+
+
+                # Agregar la información de cada activo al cuerpo del correo
+                for ticker, data in asset_data_dict.items():
+                    print(ticker, data)
+                    email_body += f'Ticker: {ticker}, Precio: {data["price"]}\n'
                 send_mail(
                     'Confirmation of Portfolio Creation',
-                    'Your portfolio has been created successfully.',
+                    email_body,
                     settings.EMAIL_HOST_USER,
                     [email],
                     fail_silently=True,
+                    html_message = html_table
                 )
 
         return redirect('moneytracker:about')
+    
 
 
 class AboutView(View):
