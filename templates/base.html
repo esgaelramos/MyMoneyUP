@@ -39,14 +39,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    {% include "components/navbar.html" %}
+    {% if not hide_header %}
+        {% include "components/navbar.html" %}
+    {% endif %}
 
     <main>
         {% block main %}{% endblock main %}
     </main>
 
-    {% include "components/footer.html" %}
-
+    {% if not hide_footer %}
+        {% include "components/footer.html" %}
+    {% endif %}
+    
     <!-- Scripts -->
     <script src="{% static 'js/main.js' %}"></script>
 

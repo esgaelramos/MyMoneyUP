@@ -9,5 +9,20 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Page not found</h1>
+    <section class="not-found__container">
+        <article class="not-found__card">
+            <div class="not-found__title">
+                <span class="not-found__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1018 4.50509C15.8335 1.50343 20.1657 1.50343 21.8975 4.50509L32.929 23.6263C34.6597 26.6263 32.4946 30.3751 29.0311 30.3751H6.96813C3.50467 30.3751 1.33953 26.6263 3.0703 23.6263L14.1018 4.50509ZM17.9999 12.375C18.6213 12.375 19.1249 12.8787 19.1249 13.5V19.125C19.1249 19.7463 18.6213 20.25 17.9999 20.25C17.3786 20.25 16.8749 19.7463 16.8749 19.125V13.5C16.8749 12.8787 17.3786 12.375 17.9999 12.375ZM17.9999 24.75C18.6213 24.75 19.1249 24.2463 19.1249 23.625C19.1249 23.0037 18.6213 22.5 17.9999 22.5C17.3786 22.5 16.8749 23.0037 16.8749 23.625C16.8749 24.2463 17.3786 24.75 17.9999 24.75Z" fill="#737373"/>
+                      </svg>
+                </span>
+                <span class="not-found__error-code">404</span>
+            </div>
+            <div class="not-found__message">
+                <p>Oops, It looks like you got lost. You're in an esoteric place. Click below to return to reality.</p>
+                <a href="/" class="btn not-found__btn">Go Back Home</a>
+            </div>
+        </article>
+    </section>
 {% endblock %}

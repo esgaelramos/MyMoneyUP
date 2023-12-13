@@ -10,5 +10,6 @@ class TermsView(View):
     
 class Custom404View(View):
     def get(self, request, *args, **kwargs):
-        html = render(request, "errors/404.html")
+        context =  {"hide_header": True, "hide_footer": True}
+        html = render(request, "errors/404.html", context)
         return HttpResponseNotFound(html)
