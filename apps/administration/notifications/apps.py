@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BrokersConfig(AppConfig):
+class NotificationsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'brokers'
+    name = 'apps.administration.notifications'

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StrategiesConfig(AppConfig):
+class RisksManagersConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'strategies'
+    name = 'apps.administration.risks_managers'

@@ -8,13 +8,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 from .configs.config_loader import load_config
-from .helpers.utils import str_to_bool
+from .helpers.formatHelper import FORMAT_HELPER
 
 
 
 env_settings = load_config()
 SECRET_KEY = env_settings['SECRET_KEY']
-DEBUG = str_to_bool(env_settings['DEBUG'])
+DEBUG = FORMAT_HELPER.str_to_bool(env_settings['DEBUG'])
 
 
 ALLOWED_HOSTS = [
