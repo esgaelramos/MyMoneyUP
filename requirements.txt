@@ -1,6 +1,11 @@
-Django==4.2
+#### DJANGO
+django
+
+#### LIBRARIES
 pyyaml
-python-decouple
-psycopg2-binary==2.9.7
-gunicorn==21.2.
+pytest
 certifi
+pytest-cov
+pytest-django
+psycopg2-binary
+django-livereload-server

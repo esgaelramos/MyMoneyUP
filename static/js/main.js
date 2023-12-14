@@ -1,11 +1,11 @@
 console.log("Prueba de inicio")
 
 document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('.main-form');
-    var emailInput = document.querySelector('#emailSelection input[type=email]');
-    var currencySelectionDiv = document.getElementById('currencySelection');
-    var submitBtn = document.getElementById('submitBtn');
-    var checkboxes = document.querySelectorAll('input[name="assets"]');
+    let form = document.querySelector('.main-form');
+    let emailInput = document.querySelector('#emailSelection input[type=email]');
+    let currencySelectionDiv = document.getElementById('currencySelection');
+    let submitBtn = document.getElementById('submitBtn');
+    let checkboxes = document.querySelectorAll('input[name="assets"]');
 
     // Función para mostrar la selección de monedas y ocultar la selección de correo electrónico
     window.showCurrencySelection = function() {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para actualizar el texto del botón de envío según la cantidad de checkboxes seleccionados
     function updateButtonCount() {
-        var selectedCount = checkboxes.length ? `Track ${document.querySelectorAll('input[name="assets"]:checked').length} Currencies` : 'Select Currencies';
+        let selectedCount = checkboxes.length ? `Track ${document.querySelectorAll('input[name="assets"]:checked').length} Currencies` : 'Select Currencies';
         submitBtn.textContent = selectedCount;
     }
 
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
             updateButtonCount();
             
             // Cambiar la visibilidad de los SVGs
-            var uncheckedSVG = checkbox.nextElementSibling.querySelector('.unchecked');
-            var checkedSVG = checkbox.nextElementSibling.querySelector('.checked');
-            var currencyItem = checkbox.closest('.currency-item');
+            let uncheckedSVG = checkbox.nextElementSibling.querySelector('.unchecked');
+            let checkedSVG = checkbox.nextElementSibling.querySelector('.checked');
+            let currencyItem = checkbox.closest('.currency-item');
             
             if (checkbox.checked) {
                 uncheckedSVG.style.display = 'none';
