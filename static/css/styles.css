@@ -242,6 +242,9 @@ p {
         padding: 32px;
         border-left: 1px solid var(--neutral-300);
     }
+    .not-found__message p {
+        font-size: 2.4rem;
+    }
     .not-found__btn {
         width: fit-content;
         padding: 11px 22px;
