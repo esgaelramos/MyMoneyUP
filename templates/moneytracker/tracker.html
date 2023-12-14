@@ -9,21 +9,43 @@
 {% endblock %}
 
 {% block main %}
-    <section class="banner">
+    <section class="banner" id="banner">
         <img src="" alt="">
     </section>
     <section class="main-section">
         <h3 class="main-section__title">Track your favorites currencies.</h3>
         <form action="{% url 'moneytracker:home' %}" method="post" class="main-form">
             {% csrf_token %}
-            <input type="email" name="email" placeholder="example@mail.com" class="main-form__input" required>
-            <label for="assets">Select assets:</label>
-            <select name="assets" id="assets" multiple required>
-                {% for asset in assets %}
-                    <option value="{{ asset.id }}">{{ asset.name }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit" class="main-form__btn">SUBSCRIBE</button>
+            <!-- Email input inicialmente mostrado -->
+            <div id="emailSelection">
+                <input type="email" name="email" placeholder="example@mail.com" class="main-form__input" required>
+                <button type="button" class="main-form__btn" onclick="showCurrencySelection()">SUBSCRIBE</button>
+            </div>
+        
+            <!-- Currency selection, inicialmente oculto -->
+            <div id="currencySelection" style="display:none;">
+                <label for="assets">Choose the currencies you want to track:</label>
+                <div class="currency-list">
+                    {% for asset in assets %}
+                    <div class="currency-item">
+                        <input type="checkbox" id="currency_{{ asset.id }}" name="assets" value="{{ asset.id }}" class="hidden-checkbox">
+                        <label for="currency_{{ asset.id }}" class="custom-checkbox">
+                            <!-- Aquí pondrías tu SVG para el estado no marcado -->
+                            <svg class="unchecked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 9V15M15 12H9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#A3A3A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                                
+                            <!-- Aquí pondrías tu SVG para el estado marcado -->
+                            <svg class="checked" width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 10C0.25 4.61522 4.61522 0.25 10 0.25C15.3848 0.25 19.75 4.61522 19.75 10C19.75 15.3848 15.3848 19.75 10 19.75C4.61522 19.75 0.25 15.3848 0.25 10ZM13.6103 8.18593C13.8511 7.84887 13.773 7.38046 13.4359 7.1397C13.0989 6.89894 12.6305 6.97701 12.3897 7.31407L9.1543 11.8436L7.53033 10.2197C7.23744 9.92678 6.76256 9.92678 6.46967 10.2197C6.17678 10.5126 6.17678 10.9874 6.46967 11.2803L8.71967 13.5303C8.87556 13.6862 9.09215 13.7656 9.31186 13.7474C9.53157 13.7293 9.73216 13.6153 9.8603 13.4359L13.6103 8.18593Z" fill="#75AAFF"/>
+                            </svg>
+                            {{ asset.name }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="main-form__btn" id="submitBtn">Select 1 Currency</button>
+            </div>
         </form>
     </section>
 {% endblock %}

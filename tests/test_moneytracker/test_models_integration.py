@@ -7,6 +7,7 @@ import datetime
 
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.core.management import call_command
 from django.db.utils import IntegrityError
 from moneytracker.models import Asset, CustomUser, Performance, Portfolio, PortfolioAsset
 
@@ -123,3 +124,24 @@ class PerformanceModelIntegrationTest(TestCase):
         with self.assertRaises(IntegrityError):
             Performance.objects.create(user=self.custom_user, days_to_send_email=7)
 
+
+class CheckLoadDataTest(TestCase):
+    """
+    Test that the data was loaded correctly from the data_initial.json fixture!
+    """
+    def test_loaddata(self):
+        # Check that the database is empty at the beginning
+        self.assertEqual(Asset.objects.count(), 0)
+        self.assertEqual(CustomUser.objects.count(), 0)
+        self.assertEqual(Portfolio.objects.count(), 0)
+        self.assertEqual(PortfolioAsset.objects.count(), 0)
+        self.assertEqual(Performance.objects.count(), 0)
+
+        call_command('loaddata', 'moneytracker/data_init', verbosity=0)
+
+        # Check that the database is not empty after load the data
+        self.assertNotEqual(Asset.objects.count(), 0)
+        self.assertNotEqual(CustomUser.objects.count(), 0)
+        self.assertNotEqual(Portfolio.objects.count(), 0)
+        self.assertNotEqual(PortfolioAsset.objects.count(), 0)
+        self.assertNotEqual(Performance.objects.count(), 0)
