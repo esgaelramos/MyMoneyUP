@@ -2,6 +2,8 @@
 
 
 class FormatHelper:
+
+    @classmethod
     def str_to_bool(value: str =  None) -> bool:
         """
             Convert a string to a boolean value.

@@ -7,7 +7,8 @@ class TermsView(View):
         context = {
         }
         return render(request, "terms/terms.html", context)
-    
+
+
 class Custom404View(View):
     def get(self, request, *args, **kwargs):
         context =  {"hide_header": True, "hide_footer": True}

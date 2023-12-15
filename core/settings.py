@@ -7,14 +7,14 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from .configs.config_loader import load_config
-from .helpers.formatHelper import FORMAT_HELPER
+from core.configs.config_loader import load_config
+from core.helpers.formatHelper import FORMAT_HELPER
 
 
 
 env_settings = load_config()
 SECRET_KEY = env_settings['SECRET_KEY']
-DEBUG = FORMAT_HELPER.str_to_bool(env_settings['DEBUG'])
+DEBUG = True#FORMAT_HELPER.str_to_bool(env_settings['DEBUG'])
 
 
 ALLOWED_HOSTS = [
@@ -29,7 +29,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'moneytracker'
+
+    'apps.authentication.simple_oauth',
+    'apps.authentication.google_oauth',
+
+    'apps.administration.users',
+    'apps.administration.assets',
+    'apps.administration.brokers',
+    'apps.administration.configurations',
+    'apps.administration.notifications',
+    'apps.administration.performances_trakings',
+    'apps.administration.portfolios',
+    'apps.administration.risks_managers',
+    'apps.administration.signals',
+    'apps.administration.strategies',
+    'apps.administration.technical_analisys',
+    'apps.administration.transactions_histories',
+
+    # 'moneytracker'
 ]
 
 
@@ -98,6 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
+
+
+AUTH_USER_MODEL = 'users.Users'
 
 
 LANGUAGE_CODE = 'en-us'
