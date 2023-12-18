@@ -43,7 +43,7 @@ class PortfolioAsset(models.Model):
     acquisition_date = models.DateField(auto_now=True)
 
     class Meta:
-        db_table = 'portfolios_asset'
+        db_table = 'portfolios_assets'
         constraints = [
             models.UniqueConstraint(fields=['portfolio', 'asset'], name='unique_portfolio_asset')
         ]
