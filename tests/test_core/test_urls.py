@@ -1,5 +1,5 @@
 """
-URL Tests for the core project
+URL Tests for the core project.
 
 This module contains unit tests that ensure the correct resolution of URLs
 within the core project. The primary focus is to guarantee that expected paths
@@ -9,18 +9,15 @@ Note:
 - For URL resolving tests, use the actual URL string (e.g., '/login/')
 instead of the named URL pattern.
 """
-from django.urls import resolve, reverse
+from django.urls import resolve
 from django.test import SimpleTestCase
 from core.views import TermsView
 
-from django.test import TestCase
-
 
 class TestUrlsResolves(SimpleTestCase):
-    """
-    Tests that the urls are resolving correctly.
-    """
+    """Tests that the urls are resolving correctly."""
 
     def test_terms_url_resolves(self):
+        """Tests that the terms url is resolving correctly."""
         view = resolve("/terms/")
         self.assertEqual(view.func.view_class, TermsView)
