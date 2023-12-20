@@ -105,6 +105,8 @@ p {
 }
 .main-form__btn {
     width: 100%;
+    /* max-width: 400px;
+    margin: 0 auto; NOTE: CHECK IF WE USE THAT FOR BTNS OR IN THE SAME DIV:)*/ 
     height: 40px;
     padding: 10px 76px;
     border: none;
@@ -117,7 +119,35 @@ p {
 .main-form__btn:active {
     box-shadow: none;
 }
-
+/* Input Search */
+.input-search{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 25px;
+    display: flex;
+    outline: 1px solid #ccc;
+    border-radius: 20px;
+}
+.input-search svg{
+    margin: 0 10px;
+}
+.input-search input{
+    width: 100%;
+    border: none;
+    outline: none;
+}
+/* Show More */
+.show-more{
+    display: flex;
+    justify-content: flex-end;
+}
+.main-form__btn__more{
+    margin: 2px 0 8px;
+    border: none;
+    background-color: transparent;
+    color: var(--neutral-800);
+    font-size: 85%;
+}
 /* Currency List */
 .currency-list {
     margin: 10px 0;
@@ -170,7 +200,11 @@ p {
     padding: 24px 16px;
 }
 
-/* 404 view */
+
+
+/* **************************************************
+    404 VIEW
+************************************************* **/
 .not-found__container {
     display: grid;
     place-items: center;

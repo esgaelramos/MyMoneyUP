@@ -7,6 +7,9 @@ class CustomUser(models.Model):
     suscribed = models.BooleanField(default=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'custom_users'
+
     def __str__(self) -> str:
         return str(self.user.username)
 
@@ -16,12 +19,18 @@ class Asset(models.Model):
     symbol = models.CharField(max_length=10)
     type = models.CharField(max_length=50)
 
+    class Meta:
+        db_table = 'assets'
+
     def __str__(self) -> str:
         return f"{self.name} ({self.symbol}) - {self.type}"
 
 
 class Portfolio(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'portfolios'
 
     def __str__(self) -> str:
         return f'Portfolio of {self.user}'
@@ -34,6 +43,7 @@ class PortfolioAsset(models.Model):
     acquisition_date = models.DateField(auto_now=True)
 
     class Meta:
+        db_table = 'portfolios_assets'
         constraints = [
             models.UniqueConstraint(fields=['portfolio', 'asset'], name='unique_portfolio_asset')
         ]
@@ -47,6 +57,7 @@ class Performance(models.Model):
     days_to_send_email = models.IntegerField(default=1)
 
     class Meta:
+        db_table = 'performances'
         constraints = [
             models.UniqueConstraint(fields=['user', 'days_to_send_email'], name='unique_performance')
         ]

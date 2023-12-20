@@ -201,6 +201,11 @@ o
 bash .github/fordevs/backups/delete_all_data.sh 
 ```
 
+Update the assets from API
+```bash
+python core/sync_assets.py
+```
+
 Don't forget to make your tests before and after make your changes
 ```bash
 pytest
