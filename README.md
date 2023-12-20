@@ -1,5 +1,5 @@
-# YourMoneyTrackerMail
-YourMoneyTrackerMail is a django project for track your assets, and send a
+# MyMoneyUP
+MyMoneyUP is a django project for track your assets, and send a
 email with a report and a newsletter with the progress and performance of 
 that assets. Check in [mymoneyup.tech](https://mymoneyup.tech) :|
 
@@ -83,8 +83,12 @@ For contribute in this project, you need to follow the next steps:
 3. Create a new branch
 4. Make your changes
 5. Run the tests
-6. Push your changes to your forked repository
-7. Make a pull request
+6. Pre-Commit your changes
+```bash
+pre-commit run --all-files
+```
+7. Push your changes to your forked repository
+8. Make a pull request
 
 Clone repository
 ```bash

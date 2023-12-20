@@ -58,7 +58,7 @@ class AboutView(View):
         context={
         }
         return render(request, "moneytracker/about.html", context)
-    
+
 
 class ContactView(View):
     def get(self, request, *args, **kwargs):
