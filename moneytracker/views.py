@@ -7,6 +7,9 @@ from django.db import transaction
 from .models import Asset, Portfolio, PortfolioAsset, CustomUser
 from django.conf import settings
 
+from Historic_Crypto import LiveCryptoData
+from requests.exceptions import RequestException
+
 # Create your views here.
 class TrackerView(View):
     def get(self, request, *args, **kwargs):
@@ -36,15 +39,32 @@ class TrackerView(View):
             portfolio, created_portfolio = Portfolio.objects.get_or_create(user=custom_user)
 
             # Add the selected assets to the portfolio
+            asset_info_list = []
             for asset_id in selected_asset_ids:
                 asset = Asset.objects.get(id=asset_id)
                 PortfolioAsset.objects.create(portfolio=portfolio, asset=asset, quantity=1)
+
+                # we fetch Coinbase API to get asset info and append into the list
+                try:
+                    crypto_data = LiveCryptoData(f'{asset.symbol}').return_data()
+                # Usamos .iloc[-1] para seleccionar el último elemento (la última fila) de un DataFrame de Pandas,
+                # En este caso, nos da acceso al precio más reciente del ticker correspondiente
+                    current_price = crypto_data['price'].iloc[-1]
+                    asset_info_list.append(f'{asset.symbol}: {round(float(current_price), 2)}$')
+                except RequestException as e:
+                    print(f"Error fetching data for {asset.symbol}: {e}")
+                    continue
+
+
+
             
             # Send a confirmation email if the portfolio was created
             if created_portfolio:
+                message_body = f'Your portfolio has been created successfully.\n\nCheck real-time info about your favorite Crypto!:\n'
+                message_body += '\n'.join(asset_info_list)
                 send_mail(
                     'Confirmation of Portfolio Creation',
-                    'Your portfolio has been created successfully.',
+                    message_body,
                     settings.EMAIL_HOST_USER,
                     [email],
                     fail_silently=True,
