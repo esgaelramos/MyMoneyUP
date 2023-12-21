@@ -2,7 +2,9 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+
 import certifi
+
 
 def main():
     """Run administrative tasks."""
@@ -10,7 +12,7 @@ def main():
     try:
         from django.core.management import execute_from_command_line
         os.environ["SSL_CERT_FILE"] = certifi.where()
-    except ImportError as exc: # pragma: no cover
+    except ImportError as exc:  # pragma: no cover
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
             "available on your PYTHONPATH environment variable? Did you "
