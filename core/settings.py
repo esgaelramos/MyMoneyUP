@@ -1,18 +1,24 @@
+"""Django project settings.
+
+This module contains the configuration for the Django project core.
+It includes settings for database connections, installed apps, middleware,
+templates, static and media files, and authentication.
+
+The module also dynamically adjusts various Django project configurations,
+ensuring flexibility and adaptability for different deployment environments.
+"""
+
 import os
 import sys
-
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 from .config_loader import load_config
 from .utils import str_to_bool
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Carga la configuración desde el archivo YAML.
+# Load the configuration from the YAML file.
 env_settings = load_config()
 
 SECRET_KEY = env_settings['SECRET_KEY']
@@ -46,9 +52,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if DEBUG: # pragma: no cover
-    INSTALLED_APPS.append('livereload')
-    MIDDLEWARE.append('livereload.middleware.LiveReloadScript')
 
 ROOT_URLCONF = 'core.urls'
 
@@ -70,6 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# Livereload extends (util for frontend)
+# https://livereload.readthedocs.io/en/latest/integrations/django.html
+if DEBUG:  # pragma: no cover
+    INSTALLED_APPS.append('livereload')
+    MIDDLEWARE.append('livereload.middleware.LiveReloadScript')
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -86,7 +95,6 @@ DATABASES = {
 }
 
 # Database for testing!
-
 if 'test' in sys.argv or 'pytest' in sys.argv[0]:
     DATABASES = {
         'default': {
@@ -95,21 +103,22 @@ if 'test' in sys.argv or 'pytest' in sys.argv[0]:
         }
     }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa: E501
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
     },
 ]
 
@@ -139,7 +148,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Email Backend
+# https://docs.djangoproject.com/en/4.2/topics/email/#smtp-backend
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
