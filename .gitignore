@@ -10,3 +10,5 @@ __pycache__/
 .coverage
 staticfiles
 .vscode/
+backup_db_prod.*
+backup_*
