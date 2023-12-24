@@ -184,21 +184,25 @@ tree -I "env|.git|.pytest_cache|__pycache__" -la
 To populate the project we offer this scripts:
 + For Linux
 ```bash
-sh .github/fordevs/backups/populate_project.sh 
+sh .github/fordevs/populate_project.sh 
 ```
 o
 ```bash
-bash .github/fordevs/backups/populate_project.sh 
+bash .github/fordevs/populate_project.sh 
 ```
 
 If you want to delete the data in your database you can run this scripts
 + For Linux
 ```bash
-sh .github/fordevs/backups/delete_all_data.sh 
+sh .github/fordevs/delete_all_data.sh 
 ```
 o
 ```bash
-bash .github/fordevs/backups/delete_all_data.sh 
+bash .github/fordevs/delete_all_data.sh 
+```
+Backup the database
+```bash
+bash .github/fordevs/backups/backup_db.sh
 ```
 
 Update the assets from API
