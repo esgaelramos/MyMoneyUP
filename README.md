@@ -175,7 +175,7 @@ For make a project with a good architecture, we made this diagram, and it's
 a responsibility of all developers, follow and maintain the better practices :|
 ![Architecture of Project](.github/fordevs/imgs/our-website-architecture.png)
 
-### For Developers
+## For Developers
 Tree of the project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__" -la
@@ -184,22 +184,25 @@ tree -I "env|.git|.pytest_cache|__pycache__" -la
 To populate the project we offer this scripts:
 + For Linux
 ```bash
-sh .github/fordevs/backups/populate_project.sh 
+sh .github/fordevs/populate_project.sh 
 ```
-o
+or
 ```bash
-bash .github/fordevs/backups/populate_project.sh 
+bash .github/fordevs/populate_project.sh 
 ```
 
 If you want to delete the data in your database you can run this scripts
 + For Linux
 ```bash
-sh .github/fordevs/backups/delete_all_data.sh 
+sh .github/fordevs/delete_all_data.sh 
 ```
-o
+or
 ```bash
-bash .github/fordevs/backups/delete_all_data.sh 
+bash .github/fordevs/delete_all_data.sh 
 ```
+
+Backup the database
+Check .github/fordevs/backups/BACKUP.md for more information!
 
 Update the assets from API
 ```bash

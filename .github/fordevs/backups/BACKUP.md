@@ -10,17 +10,28 @@ Install the PostgreSQL 16
 ```bash
 sudo apt-get install postgresql-client-16
 ```
+Copy the example script
+```bash
+cp .github/fordevs/backups/backup_db.example .github/fordevs/backups/backup_db.sh
+```
+Then change the BASE_PATH and the recipient email on the backup_db.sh script
++ Don't forget to update your environment variables!
+
 Give permission to execute the script
 ```bash
-chmod +x /path/to/project/MyMoneyUP/.github/fordevs/backup_db.sh
+chmod +x /path/to/project/MyMoneyUP/.github/fordevs/backups/backup_db.sh
 ```
-Add the script to the crontab
+Run it
+```bash
+sh .github/fordevs/backups/backup_db.sh
+```
+Or add the script to the crontab
 ```bash
 crontab -e
 ```
 Add the line below to the end of the file
 ```bash
-59 17 * * * /path/to/project/MyMoneyUP/.github/fordevs/backup_db.sh
+59 17 * * * /path/to/project/MyMoneyUP/.github/fordevs/backups/backup_db.sh
 ```
 # Backup Script Explanation
 
