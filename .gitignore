@@ -10,5 +10,7 @@ __pycache__/
 .coverage
 staticfiles
 .vscode/
-backup_db_prod.*
-backup_*
+*prod*
+*.dump
+# to protect paths
+.github/fordevs/backups/backup_db.sh
