@@ -7,7 +7,7 @@ def test_str_to_bool_true_cases():
     true_values = ['True', 'true', 'TRUE', 'TrUe']
 
     for value in true_values:
-        assert str_to_bool(value) == True
+        assert str_to_bool(value)
 
 
 def test_str_to_bool_false_cases():
@@ -15,4 +15,4 @@ def test_str_to_bool_false_cases():
     false_values = ['False', 'false', 'FALSE', 'FaLsE', '', 'NotTrue', '123']
 
     for value in false_values:
-        assert str_to_bool(value) == False
+        assert not str_to_bool(value)
