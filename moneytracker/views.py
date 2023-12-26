@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.db import transaction
-from .models import Asset, Portfolio, PortfolioAsset, CustomUser
+from .models import Asset, Portfolio, PortfolioAsset, CustomUser, AssetPrice
 from django.conf import settings
 
 from Historic_Crypto import LiveCryptoData
@@ -49,6 +49,7 @@ class TrackerView(View):
                     crypto_data = LiveCryptoData(f'{asset.symbol}').return_data()
                 # Usamos .iloc[-1] para seleccionar el último elemento (la última fila) de un DataFrame de Pandas,
                 # En este caso, nos da acceso al precio más reciente del ticker correspondiente
+                    AssetPrice.objects.create(asset=asset, price=round(float(current_price), 2))
                     current_price = crypto_data['price'].iloc[-1]
                     asset_info_list.append(f'{asset.symbol}: {round(float(current_price), 2)}$')
                 except RequestException as e:
