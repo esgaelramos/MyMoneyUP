@@ -1,9 +1,30 @@
-import psycopg2
-import sys
-from config_loader import load_config
-from Historic_Crypto import Cryptocurrencies
+"""
+Script to sync assets from the Historic Crypto Library to the database.
 
-def connect_db():
+This script uses the Historic Crypto Library to get the list of assets
+from the Coinbase API and syncs them to the database.
+
+Example:
+    python core/sync_assets.py
+"""
+import sys
+
+import psycopg2
+from psycopg2.extensions import connection
+from Historic_Crypto import Cryptocurrencies
+from config_loader import load_config
+
+
+def connect_db() -> connection:
+    """
+    Establish and return a connection to the database using env settings.
+
+    Returns:
+        psycopg2.extensions.connection: Database connection object.
+
+    Raises:
+        SystemExit: If connection to the database fails.
+    """
     env_settings = load_config()
     # Connect to the database
     try:
@@ -20,7 +41,18 @@ def connect_db():
         print(f"Error connecting to the database: {e}")
         sys.exit(1)
 
-def update_or_create_asset(conn, name, symbol='$', asset_type='x'):
+
+def update_or_create_asset(conn: connection, name: str,
+                           symbol: str = '$', asset_type: str = 'x') -> None:
+    """
+    Update an existing asset record or create a new one if it doesn't exist.
+
+    Args:
+        conn (psycopg2.extensions.connection): Database connection object.
+        name (str): Name of the asset.
+        symbol (str, optional): Symbol of the asset. Defaults to '$'.
+        asset_type (str, optional): Type of the asset. Defaults to 'x'.
+    """
     # Create a cursor
     with conn.cursor() as cursor:
         # Store the data in a variable
@@ -28,13 +60,13 @@ def update_or_create_asset(conn, name, symbol='$', asset_type='x'):
 
         # First, try to update the existing record
         cursor.execute(
-            "UPDATE public.assets SET name = %s, type = %s WHERE symbol = %s",
+            "UPDATE assets SET name = %s, type = %s WHERE symbol = %s",
             data
         )
         # If no record was updated, then insert a new one
         if cursor.rowcount == 0:
             cursor.execute(
-                "INSERT INTO public.assets (name, type, symbol) VALUES (%s, %s, %s)",
+                "INSERT INTO assets (name, type, symbol) VALUES (%s, %s, %s)",
                 data
             )
         conn.commit()
@@ -53,8 +85,9 @@ if __name__ == '__main__':
     for index, row in coins.iterrows():
         display_name = row['display_name']
         symbol = row['id']
-        print(f"Processing: {display_name} - {symbol}")
+
         update_or_create_asset(conn, display_name, symbol)
+        print(f"Processing: {display_name} - {symbol}")
 
     conn.close()
     print("Database connection closed.")
