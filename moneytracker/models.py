@@ -87,3 +87,18 @@ class Performance(models.Model):
     def __str__(self) -> str:
         """Return a string representation of the performance settings."""
         return f'Performance of {self.user}'
+    
+class AssetPrice(models.Model):
+    """Represents the price of an asset fetched in the MoneyTracker application."""
+
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=18, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """Meta options for AssetPrice model."""  # noqa: D204
+        db_table = 'asset_prices'
+
+    def __str__(self) -> str:
+        """Return a string representation of the asset price."""
+        return f'{self.asset.name} - {self.price}$ at {self.timestamp}'
