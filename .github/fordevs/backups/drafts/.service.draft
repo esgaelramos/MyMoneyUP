@@ -1,0 +1,19 @@
+[Unit]
+Description=YourMoneyTrackerMail Django Application
+After=network.target
+
+[Service]
+User=gaelapp
+WorkingDirectory=/path/to/project/MyMoneyUP
+Environment="PATH=/path/to/project/MyMoneyUP/env/bin"
+#LOCALHOST
+ExecStart=/path/to/project/MyMoneyUP/env/bin/gunicorn core.wsgi:application --workers 4 --bind 127.0.0.1:8000 --preload --chdir=/path/to/project/MyMoneyUP/
+#PUBLIC (NOT USE, JUST FOR TESTS, NGINX IS THE PROXY)
+#ExecStart=/path/to/project/MyMoneyUP/env/bin/gunicorn core.wsgi:application --workers 4 --bind 0.0.0.1:8000 --preload --chdir=/path/to/project/MyMoneyUP/
+StandardOutput=append:/var/log/mymoneyup_stdout.log
+StandardError=append:/var/log/mymoneyup_stderr.log
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
