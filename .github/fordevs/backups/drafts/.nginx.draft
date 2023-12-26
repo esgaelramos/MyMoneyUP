@@ -1,0 +1,33 @@
+server {
+    listen 80;
+    server_name your_domain_or_ip www.your_domain_or_ip;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name your_domain_or_ip www.your_domain_or_ip;
+
+    access_log /var/log/nginx/your_domain_or_ip.access.log;
+    error_log /var/log/nginx/your_domain_or_ip.error.log;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Referer $http_referer;
+        proxy_buffering off;
+    }
+
+    location /static/ {
+        alias /path/to/directory/MyMoneyUP/moneytracker/static/;
+    }
+
+    ssl_certificate /etc/letsencrypt/live/your_domain_or_ip/fullchain.pem; # SSL Certificate
+    ssl_certificate_key /etc/letsencrypt/live/your_domain_or_ip/privkey.pem; # SSL Certificate Key
+    include /etc/letsencrypt/options-ssl-nginx.conf; # Certbot Configuration
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # Certbot DH Parameters
+
+}
