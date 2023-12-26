@@ -87,9 +87,10 @@ class Performance(models.Model):
     def __str__(self) -> str:
         """Return a string representation of the performance settings."""
         return f'Performance of {self.user}'
-    
+
+
 class AssetPrice(models.Model):
-    """Represents the price of an asset fetched in the MoneyTracker application."""
+    """Represents a price of an asset fetched in MoneyTracker application."""
 
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=18, decimal_places=2)
