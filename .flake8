@@ -1,6 +1,6 @@
 [flake8]
 max-line-length = 79
-exclude = moneytracker/migrations/*
+exclude = moneytracker/migrations/*, env/*
 ignore = E203, W503
 import-order-style = pep8
 # E203: whitespace before ':' | not pep8 compatible

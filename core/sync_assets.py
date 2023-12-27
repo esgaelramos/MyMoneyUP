@@ -12,7 +12,8 @@ import sys
 import psycopg2
 from psycopg2.extensions import connection
 from Historic_Crypto import Cryptocurrencies
-from config_loader import load_config
+
+from .config_loader import load_config
 
 
 def connect_db() -> connection:
@@ -72,7 +73,7 @@ def update_or_create_asset(conn: connection, name: str,
         conn.commit()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     # Get tickers from the Coinbase API
     coins = Cryptocurrencies().find_crypto_pairs()
     coins = coins[coins['status'] != 'delisted']
