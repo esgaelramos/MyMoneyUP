@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.db.utils import IntegrityError
 from moneytracker.models import Asset, CustomUser, Performance
-from moneytracker.models import Portfolio, PortfolioAsset
+from moneytracker.models import Portfolio, PortfolioAsset, AssetPrice
 
 
 class CustomUserModelIntegrationTest(TestCase):
@@ -45,9 +45,9 @@ class AssetModelIntegrationTest(TestCase):
 
     def test_asset_creation(self):
         """Test that a Asset object was created susccessfully."""
-        asset_example = Asset.objects.create(name='Test Name',
-                                             symbol='TestSymbol',
-                                             type="Test Type")
+        asset_example = Asset.objects.create(
+            name='Test Name', symbol='TestSymbol', type="Test Type"
+        )
 
         self.assertEqual(asset_example.name, 'Test Name')
         self.assertEqual(asset_example.symbol, 'TestSymbol')
@@ -78,7 +78,8 @@ class PortfolioAssetModelIntegrationTest(TestCase):
         django_user = User.objects.create(username='DjangoUser')
         custom_user = CustomUser.objects.create(user=django_user)
         self.asset = Asset.objects.create(
-            name='Test Asset', symbol='TA', type='Test Type')
+            name='Test Asset', symbol='TA', type='Test Type'
+        )
         self.portfolio = Portfolio.objects.create(user=custom_user)
 
     def test_portfolio_asset_creation(self):
@@ -142,7 +143,27 @@ class PerformanceModelIntegrationTest(TestCase):
         # the exception
         with self.assertRaises(IntegrityError):
             Performance.objects.create(
-                user=self.custom_user, days_to_send_email=7)
+                user=self.custom_user, days_to_send_email=7
+            )
+
+
+class AssetPriceModelIntegrationTest(TestCase):
+    """Test that a Asset Price object was created successfully."""
+
+    def test_asset_price_creation(self):
+        """Test that a Asset Price object was created successfully."""
+        now = datetime.datetime.today()
+        asset_example = Asset.objects.create(
+            name='Test Name', symbol='TestSymbol', type="Test Type"
+        )
+
+        asset_price_example = AssetPrice.objects.create(
+            asset=asset_example, price=100.0
+        )
+
+        self.assertEqual(asset_price_example.asset.name, 'Test Name')
+        self.assertEqual(asset_price_example.price, 100.0)
+        self.assertEqual(asset_price_example.timestamp.date(), now.date())
 
 
 class CheckLoadDataTest(TestCase):

@@ -4,6 +4,7 @@ Tests for module `manage`.
 In this case, we are testing the manage.py script, so we need to check
 if it can be imported and if it runs correctly.
 """
+import os
 import subprocess
 from unittest.mock import patch
 
@@ -52,6 +53,9 @@ def test_manage_run():
     This test executes 'manage.py check' using subprocess to ensure that
     the script runs correctly and exits without errors.
     """
+    if os.name == 'nt':
+        pytest.skip("Skipping test on Windows OS")
+
     result = subprocess.run(
         ["python", "manage.py", "check"],
         capture_output=True

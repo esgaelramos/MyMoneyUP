@@ -8,11 +8,8 @@ from unittest.mock import patch
 from django.test import TestCase
 from django.contrib.auth.models import User
 from moneytracker.models import (
-    Asset,
-    Portfolio,
-    CustomUser,
-    Performance,
-    PortfolioAsset
+    Asset, Portfolio, CustomUser, Performance,
+    PortfolioAsset, AssetPrice
 )
 
 
@@ -191,4 +188,35 @@ class PerformanceModelTest(TestCase):
             str(performance_example),
             "Performance of Mocked CustomUser"
         )
+        mock_save.assert_not_called()
+
+
+class AssetPriceModelTest(TestCase):
+    """Test instantiation of AssetPrice object with mocks."""
+
+    @patch("moneytracker.models.AssetPrice.save")
+    @patch("moneytracker.models.AssetPrice.asset")
+    def test_assetprice_creation(self, mock_asset, mock_save):
+        """
+        Test the creation of an AssetPrice object.
+
+        This test function checks if an AssetPrice object is created
+        correctly by verifying that:
+        - The asset attribute of the AssetPrice object is set correctly.
+        - The __str__ method of the object returns the expected value.
+        - The save method of the AssetPrice object is not called.
+        """
+        mock_asset.name = "Mocked Asset"
+
+        asset_price_example = AssetPrice(
+            asset=mock_asset, price=100, timestamp='2024-12-12'
+        )
+
+        self.assertEqual(asset_price_example.asset, mock_asset)
+        self.assertEqual(asset_price_example.price, 100)
+        self.assertEqual(
+            str(asset_price_example),
+            'Mocked Asset - 100$ at 2024-12-12'
+        )
+
         mock_save.assert_not_called()
