@@ -229,6 +229,9 @@ if __name__ == '__main__':
     # Set the display format for float and integer values
     pd.options.display.float_format = '{:.2f}'.format
     merged_df = pd.merge(df, filtered_currency, left_on='Symbol', right_on='base_currency', how='left')
+    merged_df['quote_currency'] = 'USD'
+    merged_df['display_name'] = merged_df['Symbol'] + '/' + merged_df['quote_currency']
+    merged_df['id'] = merged_df['Symbol'] + '-' + merged_df['quote_currency']
     print(merged_df)
     top_cryptos = merged_df.nlargest(40, 'Market Cap')
     top_cryptos = top_cryptos.dropna()
@@ -238,8 +241,8 @@ if __name__ == '__main__':
 
     # Iterate over the tickers and update/create in the database
     for index, row in top_cryptos.iterrows():
-        display_name = row['Name']
-        symbol = row['Symbol']
+        display_name = row['display_name']
+        symbol = row['id']
 
         update_or_create_asset(conn, display_name, symbol)
         print(f"Processing: {display_name} - {symbol}")
