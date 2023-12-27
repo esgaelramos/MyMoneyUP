@@ -7,8 +7,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.models import User
+from Historic_Crypto import LiveCryptoData
 
-from .models import Asset, Portfolio, PortfolioAsset, CustomUser
+from .models import (
+    Asset, Portfolio, PortfolioAsset,
+    CustomUser, AssetPrice
+)
 
 
 class TrackerView(View):
@@ -58,16 +62,40 @@ class TrackerView(View):
                 Portfolio.objects.get_or_create(user=custom_user)
 
             # Add the selected assets to the portfolio
+            asset_info_list = []
             for asset_id in selected_asset_ids:
                 asset = Asset.objects.get(id=asset_id)
                 PortfolioAsset.objects.\
                     create(portfolio=portfolio, asset=asset, quantity=1)
 
+                # we fetch Coinbase API to get asset info and append into list
+                try:
+                    crypto_data = \
+                        LiveCryptoData(f'{asset.symbol}').return_data()
+
+                    # we use .iloc[-1] to select the last row) of DataFrame
+                    # it gives us access to the most recent price of the ticker
+                    current_price = crypto_data['price'].iloc[-1]
+                    AssetPrice.objects.create(
+                        asset=asset, price=round(float(current_price), 2)
+                    )
+                    asset_info_list.append(
+                        f'{asset.symbol}: {round(float(current_price), 2)}'
+                    )
+                except Exception as e:
+                    print(f"Error fetching data for {asset.symbol}: {e}")
+                    continue
+
             # Send a confirmation email if the portfolio was created
             if created_portfolio:
+                message_body = """
+                Your portfolio has been created successfully.
+                Check real-time info about your favorite Crypto!
+                """
+                message_body += '\n'.join(asset_info_list)
                 send_mail(
                     'Confirmation of Portfolio Creation',
-                    'Your portfolio has been created successfully.',
+                    message_body,
                     settings.EMAIL_HOST_USER,
                     [email],
                     fail_silently=True,
