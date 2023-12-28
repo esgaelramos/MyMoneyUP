@@ -50,33 +50,6 @@
         }
     },
     {
-        "model": "moneytracker.asset",
-        "pk": 1,
-        "fields": {
-            "name": "Bitcoin_example",
-            "symbol": "BTC",
-            "type": "Stock"
-        }
-    },
-    {
-        "model": "moneytracker.asset",
-        "pk": 2,
-        "fields": {
-            "name": "Ethereum_example",
-            "symbol": "ETH",
-            "type": "Stock"
-        }
-    },
-    {
-        "model": "moneytracker.asset",
-        "pk": 3,
-        "fields": {
-            "name": "The Sandbox",
-            "symbol": "SAND",
-            "type": "Stock"
-        }
-    },
-    {
         "model": "moneytracker.portfolio",
         "pk": 1,
         "fields": {
@@ -95,66 +68,6 @@
         "pk": 3,
         "fields": {
             "user": 3
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 1,
-        "fields": {
-            "portfolio": 1,
-            "asset": 1,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 2,
-        "fields": {
-            "portfolio": 2,
-            "asset": 2,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 3,
-        "fields": {
-            "portfolio": 2,
-            "asset": 3,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 4,
-        "fields": {
-            "portfolio": 3,
-            "asset": 1,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 5,
-        "fields": {
-            "portfolio": 3,
-            "asset": 2,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
-        }
-    },
-    {
-        "model": "moneytracker.portfolioasset",
-        "pk": 6,
-        "fields": {
-            "portfolio": 3,
-            "asset": 3,
-            "quantity": "100.00000000",
-            "acquisition_date": "2023-01-01"
         }
     },
     {
