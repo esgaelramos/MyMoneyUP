@@ -79,8 +79,9 @@ class TestUpdateOrCreateAsset(unittest.TestCase):
 
         # Check that execute was called with the update query
         self.mock_cursor.execute.assert_called_once_with(
-            "UPDATE assets SET name = %s, type = %s WHERE symbol = %s",
-            ('Test Asset', 'crypto', 'TA')
+            "UPDATE assets SET name = %s, type = %s, price = %s, volume = %s \
+                WHERE symbol = %s",
+            ('Test Asset', 'TestType', 'TestPrice', 'TestVolume', 'TestSymbol')
         )
 
     def test_create_new_asset(self):
@@ -88,17 +89,22 @@ class TestUpdateOrCreateAsset(unittest.TestCase):
         # Config the mock indicating that no record was updated
         self.mock_cursor.rowcount = 0
 
-        update_or_create_asset(self.mock_conn, 'New Asset', 'NA', 'stock')
+        update_or_create_asset(self.mock_conn, 'New Asset','TestPrice',
+                               'TestVolume', 'TestSymbol', 'TestType')
 
         # Check that execute was called in order (update, then insert)
         calls = [
             call(
-                "UPDATE assets SET name = %s, type = %s WHERE symbol = %s",
-                ('New Asset', 'stock', 'NA')
+                "UPDATE assets SET name = %s, type = %s, price = %s,\
+                    volume = %s WHERE symbol = %s",
+                ('New Asset', 'TestType', 'TesPrice', 'TestVolume',
+                 'TestSymbol')
             ),
             call(
-                "INSERT INTO assets (name, type, symbol) VALUES (%s, %s, %s)",
-                ('New Asset', 'stock', 'NA')
+                "INSERT INTO assets (name, type, price, volume, symbol) \
+                VALUES (%s, %s, %s, %s, %s)",
+                ('New Asset', 'TestType', 'TesPrice', 'TestVolume',
+                  'TestSymbol')
             )
         ]
         self.mock_cursor.execute.assert_has_calls(calls, any_order=False)

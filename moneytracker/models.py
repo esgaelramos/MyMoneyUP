@@ -25,6 +25,8 @@ class Asset(models.Model):
     name = models.CharField(max_length=255)
     symbol = models.CharField(max_length=10)
     type = models.CharField(max_length=50)
+    price = models.CharField(max_length=20, default=0)
+    volume = models.CharField(max_length=20, default=0)
 
     class Meta:
         """Meta options for Asset model."""  # noqa: D204
