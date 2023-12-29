@@ -1,11 +1,14 @@
 """Module for moneytracker views in the Django application."""
 
+import json
+
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db import transaction
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from Historic_Crypto import LiveCryptoData
 
@@ -134,3 +137,23 @@ class ContactView(View):
             return HttpResponse("Mail Sent Successfully!")
 
         return HttpResponse("Error: This form accepts POST requests only?")
+
+
+# 'APIS' not! With anticipo:|
+@require_POST
+def check_email(request: HttpResponse) -> JsonResponse:
+    """Endpoint for validate email in any form.
+
+    - Check if email exists in database.
+
+    Args:
+        request (HttpResponse): a request object to validate email.
+
+    Returns:
+        JsonResponse: a response object with email validation.
+    """
+    data = json.loads(request.body)
+    email = data.get('email')
+    email_exists = User.objects.filter(email=email).exists()
+
+    return JsonResponse({'emailExists': email_exists})

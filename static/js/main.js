@@ -10,23 +10,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para mostrar la selección de monedas y ocultar la selección de correo electrónico
     window.showCurrencySelection = function() {
+        var email = emailInput.value;
         // Verificar si el correo electrónico es válido
         if (!emailInput.checkValidity()) {
             alert('Please enter a valid email address.');
             return;
         }
+
+        // Hacer la llamada AJAX
+        var domain = window.location.origin;
+        fetch( domain + '/api/check-email/', {
+            method: 'POST',
+            body: JSON.stringify({ email: email }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.emailExists) {
+                // Mostrar mensaje de error si el correo electrónico ya existe
+                alert('This email is already registered.');
+            } else {
+                // Continuar con la selección de monedas si el correo electrónico no existe
+                proceedToShowCurrencySelection();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function getCsrfToken() {
+        return document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    }
+    
+    function proceedToShowCurrencySelection() {
         // Oculta la entrada de correo electrónico y el botón falso de suscripción
         document.getElementById('emailSelection').style.display = 'none';
         document.getElementById('banner').style.display = 'none';
         document.getElementById('titleTracker1').style.display = 'none';
-
+    
         // Muestra la selección de monedas y el botón real de suscripción
         currencySelectionDiv.style.display = 'block';
         submitBtn.style.display = 'block';
         titleTracker2.style.display = 'block';
+    
         // Actualiza el texto del botón según la cantidad de checkboxes seleccionados
         updateButtonCount();
     }
+    
 
     // Función para actualizar el texto del botón de envío según la cantidad de checkboxes seleccionados
     function updateButtonCount() {
