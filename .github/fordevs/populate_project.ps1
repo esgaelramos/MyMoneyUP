@@ -8,6 +8,10 @@ python manage.py migrate
 # List of applications separated by commas
 $apps = 'moneytracker'
 
+# Run the sync_assets.py script
+Write-Output "Syncing assets..."
+python -m core.sync_assets
+
 # Iterate over each application and load its data
 foreach ($app in $apps -split ',') {
     $json_file = Join-Path $app "data_init.json"
