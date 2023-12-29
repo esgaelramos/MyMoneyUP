@@ -6,6 +6,10 @@ python manage.py migrate
 apps="moneytracker"
 echo $apps
 
+# Run the sync_assets.py script
+echo "Syncing assets..."
+python -m core.sync_assets
+
 # Iterate over each application and load its data
 for app in $apps; do
     json_file="$app/data_init.json"
