@@ -5,15 +5,14 @@ This script uses the Historic Crypto Library to get the list of assets
 from the Coinbase API and syncs them to the database.
 
 Example:
-    python core/sync_assets.py
+    python -m core.sync_assets
 """
 import sys
 
 import psycopg2
 from psycopg2.extensions import connection
 from Historic_Crypto import Cryptocurrencies
-
-from .config_loader import load_config
+from core.config_loader import load_config
 
 
 def connect_db() -> connection:
