@@ -206,7 +206,7 @@ Check .github/fordevs/backups/BACKUP.md for more information!
 
 Update the assets from API
 ```bash
-python core/sync_assets.py
+python -m core.sync_assets
 ```
 
 Don't forget to make your tests before and after make your changes
