@@ -78,7 +78,7 @@ class PortfolioAssetModelIntegrationTest(TestCase):
         django_user = User.objects.create(username='DjangoUser')
         custom_user = CustomUser.objects.create(user=django_user)
         self.asset = Asset.objects.create(
-            name='Test Asset', symbol='TA', type='Test Type'
+            name='TestAsset', symbol='TA', type='Test Type'
         )
         self.portfolio = Portfolio.objects.create(user=custom_user)
 
@@ -94,7 +94,7 @@ class PortfolioAssetModelIntegrationTest(TestCase):
 
         self.assertEqual(
             portfolio_asset_example.portfolio.user.user.username, 'DjangoUser')
-        self.assertEqual(portfolio_asset_example.asset.name, 'Test Asset')
+        self.assertEqual(portfolio_asset_example.asset.name, 'TestAsset')
         self.assertEqual(portfolio_asset_example.quantity, 10.0)
         self.assertEqual(portfolio_asset_example.acquisition_date,
                          datetime.date.today())
