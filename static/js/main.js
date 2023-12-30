@@ -144,3 +144,21 @@ document.addEventListener('DOMContentLoaded', function() {
     updateButtonCount();
 });
 
+// Script to menu toggle
+
+// MENU-TOGGLE
+_toggle.onclick = () =>{
+    console.log("toggle")
+    _items.classList.toggle("open")
+    _toggle.classList.toggle("close")
+}
+// Nuevo código para cerrar el menú al hacer clic fuera del #header_navbar
+const _headerNavbar = document.getElementById('header_navbar');  // Asumiendo que este es el ID de tu navbar
+
+document.addEventListener('click', function(event) {
+  // Si el clic no fue en el navbar ni en el botón toggle
+  if (!_headerNavbar.contains(event.target) && !_toggle.contains(event.target)) {
+    _items.classList.remove("open");
+    _toggle.classList.remove("close");
+  }
+});
