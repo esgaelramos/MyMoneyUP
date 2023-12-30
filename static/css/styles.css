@@ -52,15 +52,116 @@ p {
     box-shadow: -2px -2px 8px 0px rgba(255, 215, 0, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
-/* Header */
-.header {
+/* **************************************************
+    HEADER
+************************************************* **/
+
+.header_navbar {
     display: grid;
     place-items: center;
     width: 100%;
-    height: 116px;
+    height: 100px;
     background-color: var(--primary-color);
     box-shadow: 0px 4px 16px 0px rgba(255, 215, 0, 0.25);
 }
+
+.navbar {
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.navbar-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo-title {
+    font-size: 2rem;
+    color: var(--neutral-900);
+}
+
+.navbar-items {
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background-color: var(--primary-color);
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    transform: translateX(-100%);
+    align-items: center;
+    text-align: center;
+}
+
+.navbar-items a {
+    margin: 15px 10px;
+    color: var(--neutral-900);
+    font-weight: bold;
+    font-size: 117%;
+}
+
+.navbar-toggle {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.navbar-toggle span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--neutral-900);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transform-origin: 6px 0px;
+    transition: all 0.2s linear;
+}
+
+/* **************************************************
+    RESPONSIVE
+************************************************* **/
+
+@media (min-width: 800px) {
+    .navbar {
+        padding: 0 20px;
+        display: flex;
+    }
+    
+    .navbar-toggle {
+        display: none;
+    }
+    
+    .navbar-items {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        transform: translateX(0);
+        top: 0;
+    }
+}
+
+/* **************************************************
+    ANIMATIONS
+************************************************* **/
+/* FOR MENU! */
+.close span {
+    transform: rotate(45deg) translate(0px, 0px);
+}
+.close span:nth-child(2) {
+    display: none;
+}
+.close span:nth-child(3) {
+    transform: rotate(-45deg) translate(-5px, 1px);
+}
+.open {
+    transform: translateX(0) !important
+}
+
 
 /* **************************************************
     TRACKER
