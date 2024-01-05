@@ -9,7 +9,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from moneytracker.models import (
     Asset, Portfolio, CustomUser, Performance,
-    PortfolioAsset, AssetPrice
+    PortfolioAsset, DailyAssetInfo
 )
 
 
@@ -191,32 +191,34 @@ class PerformanceModelTest(TestCase):
         mock_save.assert_not_called()
 
 
-class AssetPriceModelTest(TestCase):
-    """Test instantiation of AssetPrice object with mocks."""
+class DailyAssetInfoModelTest(TestCase):
+    """Test instantiation of DailyAssetInfo object with mocks."""
 
-    @patch("moneytracker.models.AssetPrice.save")
-    @patch("moneytracker.models.AssetPrice.asset")
-    def test_assetprice_creation(self, mock_asset, mock_save):
+    @patch("moneytracker.models.DailyAssetInfo.save")
+    @patch("moneytracker.models.DailyAssetInfo.asset")
+    def test_daily_asset_info_creation(self, mock_asset, mock_save):
         """
-        Test the creation of an AssetPrice object.
+        Test the creation of an DailyAssetInfo object.
 
-        This test function checks if an AssetPrice object is created
+        This test function checks if an DailyAssetInfo object is created
         correctly by verifying that:
-        - The asset attribute of the AssetPrice object is set correctly.
+        - The asset attribute of the DailyAssetInfo object is set correctly.
         - The __str__ method of the object returns the expected value.
-        - The save method of the AssetPrice object is not called.
+        - The save method of the DailyAssetInfo object is not called.
         """
         mock_asset.name = "Mocked Asset"
 
-        asset_price_example = AssetPrice(
-            asset=mock_asset, price=100, timestamp='2024-12-12'
+        daily_asset_info_example = DailyAssetInfo(
+            asset=mock_asset, price=100,
+            volume=50.0, timestamp='2024-12-12'
         )
 
-        self.assertEqual(asset_price_example.asset, mock_asset)
-        self.assertEqual(asset_price_example.price, 100)
+        self.assertEqual(daily_asset_info_example.asset, mock_asset)
+        self.assertEqual(daily_asset_info_example.price, 100)
+        self.assertEqual(daily_asset_info_example.volume, 50.0)
         self.assertEqual(
-            str(asset_price_example),
-            'Mocked Asset - 100$ at 2024-12-12'
+            str(daily_asset_info_example),
+            'Mocked Asset - Price: $100 at 2024-12-12'
         )
 
         mock_save.assert_not_called()

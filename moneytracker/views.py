@@ -1,6 +1,7 @@
 """Module for moneytracker views in the Django application."""
 
 import json
+import datetime
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -14,7 +15,7 @@ from Historic_Crypto import LiveCryptoData
 
 from .models import (
     Asset, Portfolio, PortfolioAsset,
-    CustomUser, AssetPrice
+    CustomUser, DailyAssetInfo
 )
 
 
@@ -79,8 +80,12 @@ class TrackerView(View):
                     # we use .iloc[-1] to select the last row) of DataFrame
                     # it gives us access to the most recent price of the ticker
                     current_price = crypto_data['price'].iloc[-1]
-                    AssetPrice.objects.create(
-                        asset=asset, price=round(float(current_price), 2)
+                    current_volume = crypto_data['volume'].iloc[-1]
+                    current_time = datetime.date.today()
+                    DailyAssetInfo.objects.create(
+                        asset=asset, price=round(float(current_price), 2),
+                        volume=round(float(current_volume), 2),
+                        timestamp=current_time
                     )
                     asset_info_list.append(
                         f'{asset.symbol}: {round(float(current_price), 2)}'
