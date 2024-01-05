@@ -3,6 +3,8 @@ MyMoneyUP is a django project for track your assets, and send a
 email with a report and a newsletter with the progress and performance of 
 that assets. Check in [mymoneyup.tech](https://mymoneyup.tech) :|
 
+[![codecov](https://codecov.io/gh/esgaelramos/MyMoneyUP/graph/badge.svg?token=DTS5NKYAE6)](https://codecov.io/gh/esgaelramos/MyMoneyUP)
+
 TODO: Put a GIFT of the website view here!
 
 ## Installation
