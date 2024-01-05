@@ -221,5 +221,6 @@ pytest
 - [Camila](https://github.com/CamilaPua)
 - [Alejimho (la secuela)](https://github.com/alejimhouwu)
 - [Andriw](https://github.com/AndriwRC)
+- [Miguel](https://github.com/memonsalvo)
 
 # END!
