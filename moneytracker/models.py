@@ -89,17 +89,21 @@ class Performance(models.Model):
         return f'Performance of {self.user}'
 
 
-class AssetPrice(models.Model):
-    """Represents a price of an asset fetched in MoneyTracker application."""
+class DailyAssetInfo(models.Model):
+    """Represents the daily info of an asset.
+
+    Fetched in MoneyTracker application.
+    """
 
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=18, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    volume = models.DecimalField(max_digits=18, decimal_places=2, default=0)
+    timestamp = models.DateTimeField()
 
     class Meta:
         """Meta options for AssetPrice model."""  # noqa: D204
-        db_table = 'asset_prices'
+        db_table = 'daily_asset_info'
 
     def __str__(self) -> str:
-        """Return a string representation of the asset price."""
-        return f'{self.asset.name} - {self.price}$ at {self.timestamp}'
+        """Return a string representation of the daily asset info."""
+        return f'{self.asset.name} - Price: ${self.price} at {self.timestamp}'

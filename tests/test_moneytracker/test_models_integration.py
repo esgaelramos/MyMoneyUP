@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.db.utils import IntegrityError
 from moneytracker.models import Asset, CustomUser, Performance
-from moneytracker.models import Portfolio, PortfolioAsset, AssetPrice
+from moneytracker.models import Portfolio, PortfolioAsset, DailyAssetInfo
 
 
 class CustomUserModelIntegrationTest(TestCase):
@@ -147,23 +147,28 @@ class PerformanceModelIntegrationTest(TestCase):
             )
 
 
-class AssetPriceModelIntegrationTest(TestCase):
-    """Test that a Asset Price object was created successfully."""
+class DailyAssetInfoModelIntegrationTest(TestCase):
+    """Test that a Daily Asset Info object was created successfully."""
 
-    def test_asset_price_creation(self):
-        """Test that a Asset Price object was created successfully."""
-        now = datetime.datetime.today()
+    def test_daily_asset_info_creation(self):
+        """Test that a Daily Asset Info object was created successfully."""
+        today = datetime.datetime.today()
         asset_example = Asset.objects.create(
             name='Test Name', symbol='TestSymbol', type="Test Type"
         )
 
-        asset_price_example = AssetPrice.objects.create(
-            asset=asset_example, price=100.0
+        daily_asset_info_example = DailyAssetInfo.objects.create(
+            asset=asset_example, price=100.0, volume=50.0,
+            timestamp=today
         )
 
-        self.assertEqual(asset_price_example.asset.name, 'Test Name')
-        self.assertEqual(asset_price_example.price, 100.0)
-        self.assertEqual(asset_price_example.timestamp.date(), now.date())
+        self.assertEqual(daily_asset_info_example.asset.name, 'Test Name')
+        self.assertEqual(daily_asset_info_example.price, 100.0)
+        self.assertEqual(daily_asset_info_example.volume, 50.0)
+        self.assertEqual(
+            daily_asset_info_example.timestamp.date(),
+            today.date()
+        )
 
 
 class CheckLoadDataTest(TestCase):
@@ -183,7 +188,7 @@ class CheckLoadDataTest(TestCase):
         self.assertEqual(Portfolio.objects.count(), 0)
         self.assertEqual(PortfolioAsset.objects.count(), 0)
         self.assertEqual(Performance.objects.count(), 0)
-        self.assertEqual(AssetPrice.objects.count(), 0)
+        self.assertEqual(DailyAssetInfo.objects.count(), 0)
 
         call_command('loaddata', 'moneytracker/data_init', verbosity=0)
 
@@ -193,4 +198,4 @@ class CheckLoadDataTest(TestCase):
         self.assertNotEqual(Portfolio.objects.count(), 0)
         self.assertEqual(PortfolioAsset.objects.count(), 0)
         self.assertNotEqual(Performance.objects.count(), 0)
-        self.assertEqual(AssetPrice.objects.count(), 0)
+        self.assertEqual(DailyAssetInfo.objects.count(), 0)
