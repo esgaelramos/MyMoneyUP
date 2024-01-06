@@ -23,6 +23,13 @@ Activate the virtual environment
 ```bash
 source env/bin/activate
 ```
+
+If you are on Ubuntu-based distributions, it may ask you to install the following code in the console to be able to use the virtual environment:
+```bash
+sudo apt install python3.10-venv
+```
+In case it is not the same code, pay attention to the data provided by the terminal of your editor
+
 Or in Others OS :| 
 ```bash
 env\Scripts\Activate.ps1 # Windows PowerShell
@@ -35,18 +42,14 @@ Install the requirements (don't forget activate the venv!)
 pip install -r requirements-dev.txt
 ```
 
-Create migrations
-```bash
-python manage.py makemigrations
-```
-
-Create the file .env
+#### Create the file .env
 
 + Now! Stop! We need create a file .env in the root of project, and add the 
 same variables of .env.example file, click here for check what mean each 
 variable: [File of Variables](#file-of-variables).
 
 #### Create the database in PostgreSQL
+Inside our Postgres, it is necessary to create the corresponding database to perform development tests for the code to function:
 ```bash
 sudo -u postgres psql # Enter to postgresql
 -
@@ -58,17 +61,20 @@ CREATE DATABASE mymoneyup;
 \q # Exit of postgresql
 ```
 
-Run the migrations
+### Run the populate_project.sh file
+It will also be necessary to run the populate.sh file, which automatically contains the execution of 'makemigrations' and 'migrate':
+
+ For Linux:
 ```bash
-python manage.py migrate
+sh .github/fordevs/populate_project.sh 
 ```
 
-Create a superuser
+ For Windows:
 ```bash
-python manage.py createsuperuser
+.github/fordevs/populate_project.ps1
 ```
 
-Run the server
+### Run the server
 ```bash
 python manage.py runserver
 ```
@@ -181,16 +187,6 @@ a responsibility of all developers, follow and maintain the better practices :|
 Tree of the project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__" -la
-```
-
-To populate the project we offer this scripts:
-+ For Linux
-```bash
-sh .github/fordevs/populate_project.sh 
-```
-or
-```bash
-bash .github/fordevs/populate_project.sh 
 ```
 
 If you want to delete the data in your database you can run this scripts
