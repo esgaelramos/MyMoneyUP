@@ -1,11 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-</head>
-<body>
-    <h2>Hola</h2>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block meta_description %}
+    My Money Up
+{% endblock %}
+
+{% block main %}
+
+    <section class="img-container">
+        <div class="img-container__about">
+            <img class="img-content__about" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703709949/MyMoneyUP/cripto_movil_dejswj.png" alt="movil_catalog">
+        </div>
+        <div class="text-container">
+            <h2 class="text-container__title">About MyMoneyUP</h2>
+            <p class="text-container__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates reprehenderit aut laudantium voluptate iure,
+                autem numquam! Non laborum commodi atque minus fugit quam sequi porro rem corporis, id vero accusantium. <br> <br>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates reprehenderit aut laudantium voluptate iure,
+                autem numquam! Non laborum commodi atque minus fugit quam sequi porro rem corporis, id vero accusantium.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates reprehenderit aut laudantium voluptate iure,
+                autem numquam! Non laborum commodi atque minus fugit quam sequi porro rem corporis, id vero accusantium.</p>
+        </div>
+    </section>
+    <section class="about-main__container">
+        <div>
+            <h2 class="text-container__title">The Developers Team</h2>
+        </div>
+        <div class="about-img__container">
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713867/MyMoneyUP/Dev_6_luth0h.png" alt="profile_img">
+                <a href="">LinkedIn: Camila Pua</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713870/MyMoneyUP/Dev_3_zromsh.png" alt="profile_img">
+                <a href="">LinkedIn: Gael Ramos</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713870/MyMoneyUP/Dev_4_kl2kla.png" alt="profile_img">
+                <a href="">LinkedIn: Jorge Garcia</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713867/MyMoneyUP/Dev_6_luth0h.png" alt="profile_img">
+                <a href="">LinkedIn: Andrew</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713868/MyMoneyUP/Dev_5_xcoj7b.png" alt="profile_img">
+                <a href="">LinkedIn: Lorenzo Máximo</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713866/MyMoneyUP/Dev_1_mccyo5.png" alt="profile_img">
+                <a href="">LinkedIn: Miguel Monsalvo</a>
+                <p>Full Developer</p>
+            </div>
+            <div class="about-img-info__container">
+                <img class="about-img__profile" src="https://res.cloudinary.com/duckwaaai/image/upload/v1703713863/MyMoneyUP/Dev_2_txuxxu.png" alt="profile_img">
+                <a href="">LinkedIn: Oswaldo Junior</a>
+                <p>Full Developer</p>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
