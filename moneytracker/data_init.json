@@ -75,7 +75,8 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "days_to_send_email": 7
+            "days_to_send_email": "Monday",
+            "periodicity": "Weekly"
         }
     },
     {
@@ -83,7 +84,8 @@
         "pk": 2,
         "fields": {
             "user": 2,
-            "days_to_send_email": 1
+            "days_to_send_email": "Friday",
+            "periodicity": "Weekly"
         }
     },
     {
@@ -91,7 +93,8 @@
         "pk": 3,
         "fields": {
             "user": 3,
-            "days_to_send_email": 3
+            "days_to_send_email": "Tuesday",
+            "periodicity": "Monthly"
         }
     }
 ]
