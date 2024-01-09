@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviar Email</title>
-</head>
-<body>
-    
-<html>
-        <h1>Enviar un Email</h1>
-        <form method="post">
-            {% csrf_token %}
-            <label for="subject">Asunto:</label><br>
-            <input type="text" id="subject" name="subject" required><br>
-            <label for="message">Mensaje:</label><br>
-            <textarea id="message" name="message" rows="4" required></textarea><br>
-            <label for="to_email">Enviar a:</label><br>
-            <input type="email" id="to_email" name="to_email" required><br>
-            <input type="submit" value="Enviar">
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block meta_description %}
+    My Money Up
+{% endblock %}
+
+{% block main %}
+
+    <section class="main-section__container">
+        <div class="main-section__image">
+            <img class="main-section__img" src="https://res.cloudinary.com/duckwaaai/image/upload/f_auto,q_auto/v1/MyMoneyUP/x7p3io7tsyrtiji4cfvp" alt="contact form image">
+        </div>
+        <div class="main-section__form">
+            <form class="main-form" action="#">
+                <input type="text" name="name" placeholder="Name">
+                <input type="email" name="email" placeholder="example@email.com" required>
+                <textarea type="text" name="message" placeholder="Message..." required cols="30" rows="10"></textarea>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}
 
 
 
