@@ -1,6 +1,6 @@
 """Tests for script `core.sync_assets`."""
 import unittest
-from unittest.mock import patch, MagicMock, call
+from unittest.mock import MagicMock, patch, call
 
 from psycopg2 import OperationalError
 from core.sync_assets import connect_db, update_or_create_asset
@@ -75,12 +75,15 @@ class TestUpdateOrCreateAsset(unittest.TestCase):
         # Config the mock indicating that a record was updated
         self.mock_cursor.rowcount = 1
 
-        update_or_create_asset(self.mock_conn, 'Test Asset', 'TA', 'crypto')
+        update_or_create_asset(
+            self.mock_conn, 'TestAsset', 'TestPrice', 'TestVolume',
+            'TestSymb', 'TestType'
+        )
 
         # Check that execute was called with the update query
         self.mock_cursor.execute.assert_called_once_with(
-            "UPDATE assets SET name = %s, type = %s WHERE symbol = %s",
-            ('Test Asset', 'crypto', 'TA')
+            "UPDATE assets SET name = %s, type = %s, price = %s, volume = %s WHERE symbol = %s",  # noqa: E501
+            ('TestAsset', 'TestType', 'TestPrice', 'TestVolume', 'TestSymb')
         )
 
     def test_create_new_asset(self):
@@ -88,17 +91,20 @@ class TestUpdateOrCreateAsset(unittest.TestCase):
         # Config the mock indicating that no record was updated
         self.mock_cursor.rowcount = 0
 
-        update_or_create_asset(self.mock_conn, 'New Asset', 'NA', 'stock')
+        update_or_create_asset(
+            self.mock_conn, 'TestAsset', 'TestPrice', 'TestVolume',
+            'TestSymb', 'TestType'
+        )
 
         # Check that execute was called in order (update, then insert)
         calls = [
             call(
-                "UPDATE assets SET name = %s, type = %s WHERE symbol = %s",
-                ('New Asset', 'stock', 'NA')
+                "UPDATE assets SET name = %s, type = %s, price = %s, volume = %s WHERE symbol = %s",  # noqa: E501
+                ('TestAsset', 'TestType', 'TestPrice', 'TestVolume', 'TestSymb')  # noqa: E501
             ),
             call(
-                "INSERT INTO assets (name, type, symbol) VALUES (%s, %s, %s)",
-                ('New Asset', 'stock', 'NA')
+                "INSERT INTO assets (name, type, price, volume, symbol) VALUES (%s, %s, %s, %s, %s)",  # noqa: E501
+                ('TestAsset', 'TestType', 'TestPrice', 'TestVolume', 'TestSymb')  # noqa: E501
             )
         ]
         self.mock_cursor.execute.assert_has_calls(calls, any_order=False)
