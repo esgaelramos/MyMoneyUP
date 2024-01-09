@@ -11,8 +11,17 @@ import sys
 
 import psycopg2
 from psycopg2.extensions import connection
-from Historic_Crypto import Cryptocurrencies
+# from Historic_Crypto import Cryptocurrencies
 from core.config_loader import load_config
+
+
+top_30_crypto_pairs = [
+    "BTC-USD", "ETH-USD", "SOL-USD", "ADA-USD", "XRP-USD", "DOT-USD",
+    "DOGE-USD", "AVAX-USD", "LINK-USD", "LTC-USD", "BCH-USD", "ALGO-USD",
+    "XLM-USD", "UNI-USD", "WBTC-USD", "ATOM-USD", "VET-USD", "FIL-USD",
+    "SAND-USD", "RPL-USD", "XTZ-USD", "EOS-USD", "MKR-USD", "CRO-USD",
+    "DASH-USD", "ZEC-USD"
+]
 
 
 def connect_db() -> connection:
@@ -74,17 +83,16 @@ def update_or_create_asset(conn: connection, name: str,
 
 if __name__ == '__main__':  # pragma: no cover
     # Get tickers from the Coinbase API
-    coins = Cryptocurrencies().find_crypto_pairs()
-    coins = coins[coins['status'] != 'delisted']
+    coins = top_30_crypto_pairs
     print(coins)
 
     # Connect to the database
     conn = connect_db()
 
     # Iterate over the tickers and update/create in the database
-    for index, row in coins.iterrows():
-        display_name = row['display_name']
-        symbol = row['id']
+    for pair in coins:
+        display_name = pair.replace("-", "/")
+        symbol = pair
 
         update_or_create_asset(conn, display_name, symbol)
         print(f"Processing: {display_name} - {symbol}")
