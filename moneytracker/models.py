@@ -1,5 +1,7 @@
 """Module for moneytracker models in the Django application."""
 
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -73,8 +75,26 @@ class PortfolioAsset(models.Model):
 class Performance(models.Model):
     """Represents user performance settings in the MoneyTracker application."""
 
+    WEEKDAY_CHOICES = [('Sunday', 'Sunday'),
+                       ('Monday', 'Monday'),
+                       ('Tuesday', 'Tuesday'),
+                       ('Wednesday', 'Wednesday'),
+                       ('Thursday', 'Thursday'),
+                       ('Friday', 'Friday'),
+                       ('Saturday', 'Saturday')]
+
+    PERIODICITY_CHOICES = [('Daily', 'Daily'),
+                           ('Weekly', 'Weekly'),
+                           ('Monthly', 'Monthly'),
+                           ('Biweekly', 'Biweekly')]
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    days_to_send_email = models.IntegerField(default=1)
+    days_to_send_email = models.CharField(choices=WEEKDAY_CHOICES,
+                                          max_length=9,
+                                          default='Monday')
+    periodicity = models.CharField(choices=PERIODICITY_CHOICES, max_length=9,
+                                   default='Weekly')
+    last_time_sendend = models.DateField(default=datetime.now)
 
     class Meta:
         """Meta options for Performance model."""  # noqa: D204

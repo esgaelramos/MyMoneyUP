@@ -126,25 +126,28 @@ class PerformanceModelIntegrationTest(TestCase):
         """Set up the test fixture before exercising it."""
         django_user = User.objects.create(username='TestUser')
         self.custom_user = CustomUser.objects.create(user=django_user)
+        self.today = datetime.date.today()
 
     def test_performance_creation(self):
         """Test that a Performance object was created successfully."""
         performance_example = Performance.objects.create(
-            user=self.custom_user, days_to_send_email=7)
+            user=self.custom_user,
+            last_time_sendend=self.today)
 
         self.assertEqual(performance_example.user.user.username, 'TestUser')
-        self.assertEqual(performance_example.days_to_send_email, 7)
+        self.assertEqual(performance_example.days_to_send_email, 'Monday')
+        self.assertEqual(performance_example.periodicity, 'Weekly')
+        self.assertEqual(performance_example.last_time_sendend, self.today)
 
     def test_unique_performance_constraint(self):
         """Test that a PortfolioAsset object it's unique."""
-        Performance.objects.create(user=self.custom_user, days_to_send_email=7)
+        Performance.objects.create(user=self.custom_user)
 
         # Try create a second object Performace with same values and catch
         # the exception
         with self.assertRaises(IntegrityError):
-            Performance.objects.create(
-                user=self.custom_user, days_to_send_email=7
-            )
+            Performance.objects.create(user=self.custom_user,
+                                       last_time_sendend=self.today)
 
 
 class DailyAssetInfoModelIntegrationTest(TestCase):
