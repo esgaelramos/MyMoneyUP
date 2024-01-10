@@ -180,10 +180,11 @@ class PerformanceModelTest(TestCase):
         - The save method of the Performance object is not called.
         """
         mock_user.__str__.return_value = "Mocked CustomUser"
-        performance_example = Performance(user=mock_user, days_to_send_email=1)
+        performance_example = Performance(user=mock_user)
 
         self.assertEqual(performance_example.user, mock_user)
-        self.assertEqual(performance_example.days_to_send_email, 1)
+        self.assertEqual(performance_example.days_to_send_email, 'Monday')
+        self.assertEqual(performance_example.periodicity, 'Weekly')
         self.assertEqual(
             str(performance_example),
             "Performance of Mocked CustomUser"
