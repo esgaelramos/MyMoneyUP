@@ -94,7 +94,7 @@ class Performance(models.Model):
                                           default='Monday')
     periodicity = models.CharField(choices=PERIODICITY_CHOICES, max_length=9,
                                    default='Weekly')
-    last_time_sendend = models.DateField(default=datetime.now)
+    last_time_sent = models.DateField(default=datetime.now)
 
     class Meta:
         """Meta options for Performance model."""  # noqa: D204
