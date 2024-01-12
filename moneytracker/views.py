@@ -144,6 +144,15 @@ class ContactView(View):
         return HttpResponse("Error: This form accepts POST requests only?")
 
 
+class UnsubscribeView(View):
+    """View for handling unsubscribe page and functionality."""
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET request to render the unsubscribe page."""
+        context = {}
+        return render(request, "moneytracker/unsubscribe.html", context)
+
+
 # 'APIS' not! With anticipo:|
 @require_POST
 def check_email(request: HttpResponse) -> JsonResponse:
