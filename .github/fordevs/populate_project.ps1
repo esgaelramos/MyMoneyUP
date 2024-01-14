@@ -10,7 +10,7 @@ $apps = 'moneytracker'
 
 # Run the sync_assets.py script
 Write-Output "Syncing assets..."
-python -m core.sync_assets
+python manage.py sync_assets
 
 # Iterate over each application and load its data
 foreach ($app in $apps -split ',') {
