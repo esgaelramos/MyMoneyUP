@@ -18,7 +18,7 @@
             <h3 class="subscribe-form__title" id="titleTracker1">Track your favorites currencies.</h3>
             <h3 class="subscribe-form__title" id="titleTracker2" style="display:none;">Choose the currencies you want to track:</h3>
             
-            <form action="{% url 'moneytracker:home' %}" method="post" class="subscribe-form">
+            <form action="{% url 'moneytracker:home' %}" method="post" class="subscribe-form" id="subscribeForm">
                 {% csrf_token %}
                 <!-- Email input inicialmente mostrado -->
                 <div id="emailSelection">

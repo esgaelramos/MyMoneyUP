@@ -459,6 +459,7 @@ p,a,input {
 }
 
 .about-img-info__container {
+    width: 200px;
     display: flex;
     flex-direction: column;
     text-align: center;
