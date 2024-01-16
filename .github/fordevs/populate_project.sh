@@ -8,7 +8,7 @@ echo $apps
 
 # Run the sync_assets.py script
 echo "Syncing assets..."
-python -m core.sync_assets
+python manage.py sync_assets
 
 # Iterate over each application and load its data
 for app in $apps; do

@@ -94,7 +94,7 @@ class Performance(models.Model):
                                           default='Monday')
     periodicity = models.CharField(choices=PERIODICITY_CHOICES, max_length=9,
                                    default='Weekly')
-    last_time_sendend = models.DateField(default=datetime.now)
+    last_time_sent = models.DateField(default=datetime.now)
 
     class Meta:
         """Meta options for Performance model."""  # noqa: D204
@@ -118,7 +118,7 @@ class DailyAssetInfo(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=18, decimal_places=2)
     volume = models.DecimalField(max_digits=18, decimal_places=2, default=0)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(default=datetime.now)
 
     class Meta:
         """Meta options for AssetPrice model."""  # noqa: D204

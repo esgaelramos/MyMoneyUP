@@ -1,7 +1,7 @@
 console.log("Prueba de inicio")
 
 document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('.main-form');
+    var form = document.querySelector('#subscribeForm');
     var emailInput = document.querySelector('#emailSelection input[type=email]');
     var currencySelectionDiv = document.getElementById('currencySelection');
     var submitBtn = document.getElementById('submitBtn');

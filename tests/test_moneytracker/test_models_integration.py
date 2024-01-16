@@ -132,12 +132,12 @@ class PerformanceModelIntegrationTest(TestCase):
         """Test that a Performance object was created successfully."""
         performance_example = Performance.objects.create(
             user=self.custom_user,
-            last_time_sendend=self.today)
+            last_time_sent=self.today)
 
         self.assertEqual(performance_example.user.user.username, 'TestUser')
         self.assertEqual(performance_example.days_to_send_email, 'Monday')
         self.assertEqual(performance_example.periodicity, 'Weekly')
-        self.assertEqual(performance_example.last_time_sendend, self.today)
+        self.assertEqual(performance_example.last_time_sent, self.today)
 
     def test_unique_performance_constraint(self):
         """Test that a PortfolioAsset object it's unique."""
@@ -147,7 +147,7 @@ class PerformanceModelIntegrationTest(TestCase):
         # the exception
         with self.assertRaises(IntegrityError):
             Performance.objects.create(user=self.custom_user,
-                                       last_time_sendend=self.today)
+                                       last_time_sent=self.today)
 
 
 class DailyAssetInfoModelIntegrationTest(TestCase):

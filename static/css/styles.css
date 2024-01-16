@@ -36,7 +36,7 @@ h2 {
 h3 {
     font-size: 2rem;
 }
-p {
+p,a,input {
     font-size: 1.6rem;
 }
 .btn {
@@ -80,7 +80,6 @@ p {
 }
 
 .navbar-logo-title {
-    font-size: 2rem;
     color: var(--neutral-900);
 }
 
@@ -102,7 +101,6 @@ p {
     margin: 15px 10px;
     color: var(--neutral-900);
     font-weight: bold;
-    font-size: 117%;
 }
 
 .navbar-toggle {
@@ -174,11 +172,13 @@ p {
 .banner img {
     width: 100%;
 }
-.main-section {
+.subscribe-form__container {
     padding: 24px 16px;
+    margin: 0 auto;
     margin-bottom: 80px;
+    max-width: 500px;
 }
-.main-form, 
+.subscribe-form, 
 #emailSelection,
 #currencySelection {
     display: flex;
@@ -188,23 +188,22 @@ p {
     min-width: 230px;
     margin-top: 16px;
 }
-.main-form__input {
+.subscribe-form__input {
     border: none;
     border-bottom: 2px solid var(--neutral-400);
     padding: 0 0 2px 4px;
     outline: none;
-    font-size: 1.6rem;
     font-weight: 500;
     color: var(--neutral-400);
 }
-.main-form__input:hover {
+.subscribe-form__input:hover {
     border-color: var(--neutral-800);
 }
-.main-form__input:focus-visible {
+.subscribe-form__input:focus-visible {
     border-color: var(--neutral-800);
     color: var(--neutral-800);
 }
-.main-form__btn {
+.subscribe-form__btn {
     width: 100%;
     /* max-width: 400px;
     margin: 0 auto; NOTE: CHECK IF WE USE THAT FOR BTNS OR IN THE SAME DIV:)*/ 
@@ -217,7 +216,7 @@ p {
     background-color: var(--primary-color);
     box-shadow: -2px -2px 8px 0px rgba(255, 215, 0, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);    
 }
-.main-form__btn:active {
+.subscribe-form__btn:active {
     box-shadow: none;
 }
 /* Input Search */
@@ -242,7 +241,7 @@ p {
     display: flex;
     justify-content: flex-end;
 }
-.main-form__btn__more{
+.subscribe-form__btn__more{
     margin: 2px 0 8px;
     border: none;
     background-color: transparent;
@@ -347,6 +346,25 @@ p {
 }
 
 @media (min-width: 800px) {
+    /* TRACKER */
+    .main-container {
+        display: flex;
+        width: 100%;
+        height: 80vh;
+    }
+    .banner {
+        width: 60%;
+    }
+    .subscribe-form__container {
+
+        display: grid;
+        place-content: center;
+        width: 40%;
+        margin: 0;
+        padding: 60px;
+
+    }
+
     /* 404 */
     .not-found__card {
         display: grid;
@@ -441,6 +459,7 @@ p {
 }
 
 .about-img-info__container {
+    width: 200px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -485,6 +504,7 @@ p {
         gap: 60px 100px;
     }
 }
+
 
 /* **************************************************
     CONTACT
@@ -572,4 +592,18 @@ p {
         object-fit: cover;
     }
 
+}
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 4.8rem;
+    }
+    h2 {
+        font-size: 3.6rem;
+    }
+    h3 {
+        font-size: 3rem;
+    }
+    p,a,input {
+        font-size: 2.4rem;
+    }
 }
