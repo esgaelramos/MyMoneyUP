@@ -504,6 +504,94 @@ p,a,input {
     }
 }
 
+
+/* **************************************************
+    CONTACT
+************************************************* **/
+
+.main-section__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin: 50px 0;
+}
+
+.main-section__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section__img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+}
+
+.main-section__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-form input {
+    width: 100%;
+    border: 0.5px solid var(--neutral-900);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.main-form textarea {
+    width: 100%;
+    border: 0.5px solid var(--neutral-900);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.main-form button {
+    background-color: var(--primary-color);
+    color: var(--neutral-900);
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    box-shadow: -2px -2px 8px 0px rgba(255, 215, 0, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 800px) {
+
+    .main-section__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        margin: 100px 0;
+    }
+
+    .main-section__img {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+    }
+
+}
 @media (min-width: 1024px) {
     h1 {
         font-size: 4.8rem;
@@ -517,6 +605,69 @@ p,a,input {
     p,a,input {
         font-size: 2.4rem;
     }
+}
+
+/* **************************************************
+    UNSUBCRIBE
+************************************************* **/
+.unsubscribe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 100px;
+}
+
+.unsubscribe-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 50px;
+    gap: 20px;
+}
+
+.unsubscribe-form h1 {
+    text-align: center;
+}
+
+.unsubscribe-form p {
+    text-align: justify;
+}
+
+.unsubscribe-form__input {
+    width: 100%;
+    /* max-width: 400px;
+    margin: 0 auto; NOTE: CHECK IF WE USE THAT FOR BTNS OR IN THE SAME DIV:)*/ 
+    height: 40px;
+    padding: 10px 76px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    box-shadow: -2px -2px 8px 0px rgba(255, 215, 0, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+@media (min-width: 800px) {
+
+    .unsubscribe-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 50px;
+        padding: 0 50px;
+        gap: 30px;
+    }
+
+    .unsubscribe-form h1 {
+        text-align: center;
+    }
+    .unsubscribe-form p {
+        text-align: center;
+    }
+
 }
 
 /* This should be always at the end */
