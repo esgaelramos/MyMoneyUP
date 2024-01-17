@@ -100,3 +100,13 @@ class ContactViewTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Test Subject')
         self.assertEqual(response.status_code, 200)
+
+
+class UnsubscribeViewTests(TestCase):
+    """Tests that the about view is working correctly."""
+
+    def test_about_view_uses_correct_template(self):
+        """Tests that the unsuscribe view uses the correct template."""
+        response = self.client.get(reverse('moneytracker:unsubscribe'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'moneytracker/unsubscribe.html')

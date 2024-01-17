@@ -607,3 +607,66 @@ p,a,input {
         font-size: 2.4rem;
     }
 }
+
+/* **************************************************
+    UNSUBCRIBE
+************************************************* **/
+
+.unsubscribe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 100px;
+}
+
+.unsubscribe-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 50px;
+    gap: 20px;
+}
+
+.unsubscribe-form h1 {
+    text-align: center;
+}
+
+.unsubscribe-form p {
+    text-align: justify;
+}
+
+.unsubscribe-form__input {
+    width: 100%;
+    /* max-width: 400px;
+    margin: 0 auto; NOTE: CHECK IF WE USE THAT FOR BTNS OR IN THE SAME DIV:)*/ 
+    height: 40px;
+    padding: 10px 76px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    box-shadow: -2px -2px 8px 0px rgba(255, 215, 0, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+@media (min-width: 800px) {
+
+    .unsubscribe-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 50px;
+        padding: 0 50px;
+        gap: 30px;
+    }
+
+    .unsubscribe-form h1 {
+        text-align: center;
+    }
+    .unsubscribe-form p {
+        text-align: center;
+    }
+}

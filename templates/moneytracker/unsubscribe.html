@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Unsubscribe
+{% endblock %}
+
+{% block meta_description %}
+    My Money Up
+{% endblock %}
+
+{% block main %}
+
+    <section class="unsubscribe-container">
+        <div class="unsubscribe-form">
+            <h1>Darse de baja</h1>
+
+            <p>¿Estás seguro de que quieres decir adiós?</p>
+            <p>Estaremos tristes de verlo irse, pero si ya no desea recibir correos electrónicos de <strong>MyMoneyUp</strong>, haga click en el enlace a continuación.</p>
+
+            <form class="unsubscribe-form__form" method="post">
+                {% csrf_token %}
+                <input class="unsubscribe-form__input" name="email" type="submit" value="Confirmar">
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

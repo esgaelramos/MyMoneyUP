@@ -11,7 +11,10 @@ instead of the named URL pattern.
 """
 from django.urls import resolve
 from django.test import SimpleTestCase
-from moneytracker.views import TrackerView, AboutView, ContactView
+from moneytracker.views import TrackerView
+from moneytracker.views import AboutView
+from moneytracker.views import ContactView
+from moneytracker.views import UnsubscribeView
 
 
 class TestUrlsResolves(SimpleTestCase):
@@ -31,3 +34,8 @@ class TestUrlsResolves(SimpleTestCase):
         """Tests that the contact url is resolving correctly."""
         view = resolve('/contact/')
         self.assertEqual(view.func.view_class, ContactView)
+
+    def test_unsubscribe_url_resolves(self):
+        """Tests that the unsubscribe url is resolving correctly."""
+        view = resolve("/unsubscribe/")
+        self.assertEqual(view.func.view_class, UnsubscribeView)
