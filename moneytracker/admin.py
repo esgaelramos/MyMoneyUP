@@ -7,12 +7,13 @@ providing a user-friendly interface for managing application data.
 from django.contrib import admin
 
 from .models import (
-    Asset, CustomUser, Performance, Portfolio, PortfolioAsset
+    Asset, CustomUser, DailyAssetInfo, Performance, Portfolio, PortfolioAsset
 )
 
 # Regular Admin Register
 admin.site.register(Asset)
 admin.site.register(CustomUser)
+admin.site.register(DailyAssetInfo)
 admin.site.register(Performance)
 admin.site.register(PortfolioAsset)
 
