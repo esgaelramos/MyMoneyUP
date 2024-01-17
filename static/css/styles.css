@@ -286,10 +286,9 @@ p,a,input {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    display: none; /* Ocultar ambos SVGs inicialmente */
 }
 /* Mostrar el SVG 'unchecked' por defecto */
-.custom-checkbox .unchecked {
+.unchecked {
     display: inline;
 }
 
