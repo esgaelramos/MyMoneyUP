@@ -16,18 +16,18 @@
         </section>
         <section class="subscribe-form__container">
             <h3 class="subscribe-form__title" id="titleTracker1">Track your favorites currencies.</h3>
-            <h3 class="subscribe-form__title" id="titleTracker2" style="display:none;">Choose the currencies you want to track:</h3>
+            <h3 class="subscribe-form__title" id="titleTracker2">Choose the currencies you want to track:</h3>
             
             <form action="{% url 'moneytracker:home' %}" method="post" class="subscribe-form" id="subscribeForm">
                 {% csrf_token %}
                 <!-- Email input inicialmente mostrado -->
-                <div id="emailSelection">
-                    <input type="email" name="email" placeholder="example@mail.com" class="subscribe-form__input" required>
-                    <button type="button" class="subscribe-form__btn" onclick="showCurrencySelection()">SUBSCRIBE</button>
+                <div id="emailSelection" class="subscribe-form__email-selection">
+                    <input type="email" name="email" placeholder="example@mail.com" class="subscribe-form__input" id="emailInput" required>
+                    <button type="button" id="emailBtn" class="subscribe-form__btn">SUBSCRIBE</button>
                 </div>
             
                 <!-- Currency selection, inicialmente oculto -->
-                <div id="currencySelection" style="display:none;">
+                <div id="currencySelection" class="subscribe-form__currency-selection">
                     <!-- Input for Search -->
                     <div class="input-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#737373" viewBox="0 0 50 50">

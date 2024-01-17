@@ -179,8 +179,8 @@ p,a,input {
     max-width: 500px;
 }
 .subscribe-form, 
-#emailSelection,
-#currencySelection {
+.subscribe-form__email-selection,
+.subscribe-form__currency-selection {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -518,4 +518,9 @@ p,a,input {
     p,a,input {
         font-size: 2.4rem;
     }
+}
+
+/* This should be always at the end */
+.inactive {
+    display: none;
 }

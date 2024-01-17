@@ -1,15 +1,16 @@
 console.log("Prueba de inicio")
 
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('#subscribeForm');
-    var emailInput = document.querySelector('#emailSelection input[type=email]');
-    var currencySelectionDiv = document.getElementById('currencySelection');
-    var submitBtn = document.getElementById('submitBtn');
-    var checkboxes = document.querySelectorAll('input[name="assets"]');
-    var titleTracker2 = document.getElementById('titleTracker2');
+function homePage() {
+    console.log('Home');
+
+    titleTracker1.classList.remove('inactive');
+    titleTracker2.classList.add('inactive');
+    emailSelectionDiv.classList.remove('inactive');
+    currencySelectionDiv.classList.add('inactive');
+}
 
     // Función para mostrar la selección de monedas y ocultar la selección de correo electrónico
-    window.showCurrencySelection = function() {
+    function showCurrencySelection() {
         var email = emailInput.value;
         // Verificar si el correo electrónico es válido
         if (!emailInput.checkValidity()) {
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Manejar el evento submit del formulario
-    form.addEventListener('submit', function(event) {
+    subscribeForm.addEventListener('submit', function(event) {
         // Verificar si la selección de monedas está oculta y si el campo de correo electrónico tiene el foco
         if (currencySelectionDiv.style.display === 'none' && document.activeElement === emailInput) {
             event.preventDefault(); // Prevenir que el formulario se envíe (cuando se presiona enter en el campo de correo electrónico)
@@ -142,7 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializa el estado del botón de envío
     updateButtonCount();
-});
+
+// Event Listeners
+emailBtn.addEventListener('click', showCurrencySelection);
+
+window.addEventListener('DOMContentLoaded', homePage, false);
+
+
 
 // Script to menu toggle
 
