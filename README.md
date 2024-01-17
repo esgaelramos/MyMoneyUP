@@ -5,8 +5,19 @@ that assets. Check in [mymoneyup.tech](https://mymoneyup.tech) :|
 
 [![codecov](https://codecov.io/gh/esgaelramos/MyMoneyUP/graph/badge.svg?token=DTS5NKYAE6)](https://codecov.io/gh/esgaelramos/MyMoneyUP)
 
-TODO: Put a GIFT of the website view here!
+![Architecture of Project](.github/fordevs/imgs/Flow_of_Website.gif)
 
+## Table content
++ [Installation](#installation)
+    + [Create the file .env](#create-the-file-env)
++ [File of Variables](#file-of-variables)
+    + [Create the database in PostgreSQL](#create-the-database-in-postgresql)
++ [Run the populate_project.sh file](#run-the-populate_projectsh-file)
+
+
+
+
+---
 ## Installation
 For the correct operation of the project, it is necessary to have installed the following programs:
 + Python 3.10 (or higher)
@@ -24,11 +35,7 @@ Activate the virtual environment
 source env/bin/activate
 ```
 
-If you are on Ubuntu-based distributions, it may ask you to install the following code in the console to be able to use the virtual environment:
-```bash
-sudo apt install python3.10-venv
-```
-In case it is not the same code, pay attention to the data provided by the terminal of your editor
+If you are on Ubuntu-based distributions, pay attention to the data provided by the terminal of your editor because if you missed something during installation, it will provide information about the missing dependencies.
 
 Or in Others OS :| 
 ```bash
