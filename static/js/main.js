@@ -9,43 +9,50 @@ function homePage() {
     currencySelectionDiv.classList.add('inactive');
 }
 
-    // Función para mostrar la selección de monedas y ocultar la selección de correo electrónico
-    function showCurrencySelection() {
-        var email = emailInput.value;
-        // Verificar si el correo electrónico es válido
-        if (!emailInput.checkValidity()) {
-            alert('Please enter a valid email address.');
-            return;
-        }
+function checkEmailValidity() {
+    // Verificar si el correo electrónico es válido
+    if (!emailInput.checkValidity()) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+    checkEmailExistence(window.location.origin, emailInput.value);
+}
 
-        // Hacer la llamada AJAX
-        var domain = window.location.origin;
-        fetch( domain + '/api/check-email/', {
+async function checkEmailExistence(domain, email) {
+    try {
+        const response = await fetch(`${domain}/api/check-email/`, {
             method: 'POST',
             body: JSON.stringify({ email: email }),
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCsrfToken()
             }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.emailExists) {
-                // Mostrar mensaje de error si el correo electrónico ya existe
-                alert('This email is already registered.');
-            } else {
-                // Continuar con la selección de monedas si el correo electrónico no existe
-                proceedToShowCurrencySelection();
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
         });
+        if (response.status !== 200) {
+            throw new Error(
+                `An error ocurred: ${response.status} ${response.statusText}`
+            );
+        }
+
+        const data = await response.json()
+
+        if (data.emailExists) {
+            // Mostrar mensaje de error si el correo electrónico ya existe
+            alert('This email is already registered.');
+        } else {
+            // Continuar con la selección de monedas si el correo electrónico no existe
+            proceedToShowCurrencySelection();
+        }
+
+    } catch (error) {
+        console.error(error.message);
     }
 
-    function getCsrfToken() {
-        return document.querySelector('[name="csrfmiddlewaretoken"]').value;
-    }
+}
+
+function getCsrfToken() {
+    return document.querySelector('[name="csrfmiddlewaretoken"]').value;
+}
     
     function proceedToShowCurrencySelection() {
         // Oculta la entrada de correo electrónico y el botón falso de suscripción
@@ -145,7 +152,7 @@ function homePage() {
     updateButtonCount();
 
 // Event Listeners
-emailBtn.addEventListener('click', showCurrencySelection);
+emailBtn.addEventListener('click', checkEmailValidity);
 
 window.addEventListener('DOMContentLoaded', homePage, false);
 
