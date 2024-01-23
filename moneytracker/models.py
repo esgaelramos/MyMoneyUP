@@ -56,8 +56,8 @@ class PortfolioAsset(models.Model):
 
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
-    quantity = models.DecimalField(max_digits=18, decimal_places=8)
-    acquisition_date = models.DateField(auto_now=True)
+    quantity = models.DecimalField(max_digits=18, decimal_places=8, default=1)
+    acquisition_date = models.DateField(default=datetime.now)
 
     class Meta:
         """Meta options for PortfolioAsset model."""  # noqa: D204

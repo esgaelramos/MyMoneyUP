@@ -196,9 +196,9 @@ class CheckLoadDataTest(TestCase):
         call_command('loaddata', 'moneytracker/data_init', verbosity=0)
 
         # Check that the database is not empty after load the data
-        self.assertEqual(Asset.objects.count(), 0)
+        self.assertNotEqual(Asset.objects.count(), 0)
         self.assertNotEqual(CustomUser.objects.count(), 0)
         self.assertNotEqual(Portfolio.objects.count(), 0)
-        self.assertEqual(PortfolioAsset.objects.count(), 0)
+        self.assertNotEqual(PortfolioAsset.objects.count(), 0)
         self.assertNotEqual(Performance.objects.count(), 0)
         self.assertEqual(DailyAssetInfo.objects.count(), 0)
