@@ -3,27 +3,36 @@
         "model": "auth.user",
         "pk": 1,
         "fields": {
-            "username": "exampleuser1",
+            "username": "userexample1",
             "password": "examplepassword1",
-            "email": "user1@example.com"
+            "email": "example1@email.com"
         }
     },
     {
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "username": "exampleuser2",
+            "username": "userexample2",
             "password": "examplepassword2",
-            "email": "user2@example.com"
+            "email": "example2@email.com"
         }
     },
     {
         "model": "auth.user",
         "pk": 3,
         "fields": {
-            "username": "exampleuser3",
+            "username": "userexample3",
             "password": "examplepassword3",
-            "email": "user3@example.com"
+            "email": "example3@email.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "userexample4",
+            "password": "examplepassword4",
+            "email": "example4@email.com"
         }
     },
     {
@@ -50,6 +59,13 @@
         }
     },
     {
+        "model": "moneytracker.customuser",
+        "pk": 4,
+        "fields": {
+            "user": 4
+        }
+    },
+    {
         "model": "moneytracker.portfolio",
         "pk": 1,
         "fields": {
@@ -71,12 +87,112 @@
         }
     },
     {
+        "model": "moneytracker.portfolio",
+        "pk": 4,
+        "fields": {
+            "user": 4
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 1,
+        "fields": {
+            "name": "asset1",
+            "symbol": "1.0",
+            "type": "y"
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 2,
+        "fields": {
+            "name": "asset2",
+            "symbol": "2.0",
+            "type": "y"
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 3,
+        "fields": {
+            "name": "asset3",
+            "symbol": "3.0",
+            "type": "y"
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 4,
+        "fields": {
+            "name": "asset4",
+            "symbol": "4.0",
+            "type": "y"
+        }
+    },
+    {
+        "model": "moneytracker.asset",
+        "pk": 5,
+        "fields": {
+            "name": "asset5",
+            "symbol": "5.0",
+            "type": "y"
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 1,
+        "fields": {
+            "portfolio": 1,
+            "asset": 1
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 2,
+        "fields": {
+            "portfolio": 1,
+            "asset": 2
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 3,
+        "fields": {
+            "portfolio": 2,
+            "asset": 2
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 4,
+        "fields": {
+            "portfolio": 3,
+            "asset": 3
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 5,
+        "fields": {
+            "portfolio": 4,
+            "asset": 4
+        }
+    },
+    {
+        "model": "moneytracker.portfolioasset",
+        "pk": 6,
+        "fields": {
+            "portfolio": 4,
+            "asset": 5
+        }
+    },
+    {
         "model": "moneytracker.performance",
         "pk": 1,
         "fields": {
             "user": 1,
             "days_to_send_email": "Monday",
-            "periodicity": "Weekly"
+            "periodicity": "Daily"
         }
     },
     {
@@ -93,8 +209,19 @@
         "pk": 3,
         "fields": {
             "user": 3,
-            "days_to_send_email": "Tuesday",
-            "periodicity": "Monthly"
+            "days_to_send_email": "Friday",
+            "periodicity": "Monthly",
+            "last_time_sent": "2023-12-22"
+        }
+    },
+    {
+        "model": "moneytracker.performance",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "days_to_send_email": "Friday",
+            "periodicity": "Biweekly",
+            "last_time_sent": "2024-01-05"
         }
     }
 ]
