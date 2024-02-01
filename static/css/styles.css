@@ -179,8 +179,8 @@ p,a,input {
     max-width: 500px;
 }
 .subscribe-form, 
-#emailSelection,
-#currencySelection {
+.subscribe-form__email-selection,
+.subscribe-form__currency-selection {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -286,10 +286,9 @@ p,a,input {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    display: none; /* Ocultar ambos SVGs inicialmente */
 }
 /* Mostrar el SVG 'unchecked' por defecto */
-.custom-checkbox .unchecked {
+.unchecked {
     display: inline;
 }
 
@@ -611,7 +610,6 @@ p,a,input {
 /* **************************************************
     UNSUBCRIBE
 ************************************************* **/
-
 .unsubscribe-container {
     display: flex;
     flex-direction: column;
@@ -669,4 +667,10 @@ p,a,input {
     .unsubscribe-form p {
         text-align: center;
     }
+
+}
+
+/* This should be always at the end */
+.inactive {
+    display: none;
 }
